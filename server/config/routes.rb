@@ -1,6 +1,8 @@
 RepublicaCiudadana::Application.routes.draw do
   resources :preguntas, :path_names => { :new => 'nueva', :edit => 'editar' }
 
+  root :to => 'preguntas#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
