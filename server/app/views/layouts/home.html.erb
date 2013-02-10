@@ -16,14 +16,24 @@
         <input type="text" class="search-query" placeholder="Busque">
       </form>
       <ul class="nav pull-right">
-        <li><a href="#">Formule una pregunta</a></li>
-        <li><a href="#">Regístrese o ingrese</a></li>
+        <li><a href="/login">Regístrese o ingrese</a></li>
       </ul>
-      <a class="brand" href="#">Republica Ciudadana</a>
     </div>
   </div>
 
   <div class="container-fluid">
+    <!--=================-->
+    <!--RECUADRO GRANDOTE-->
+    <!--=================-->
+    <div class="hero-unit">
+      <h1>República Ciudadana</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        <a>Lea Mas &raquo;</a>
+      </p>
+      <p><%= link_to raw("Formule una pregunta &raquo;"), new_pregunta_path, :class => "btn btn-primary"%></p>
+    </div>
+
     <%= yield %>
   </div>
 

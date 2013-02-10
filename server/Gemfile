@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.11'
 gem 'jquery-rails'
 gem 'devise'
-gem 'omniauth'
-gem 'omniauth-facebook'
+gem 'bootstrap-wysihtml5-rails'
 
 group :development do
   gem 'sqlite3'
@@ -25,3 +24,6 @@ end
 #
 # To use debugger
 # gem 'debugger'
+# gem 'omniauth'
+
+# gem 'omniauth-facebook'

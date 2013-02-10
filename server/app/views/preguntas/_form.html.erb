@@ -1,0 +1,59 @@
+<!--  -->
+<!-- <form> -->
+<!--     <label>Label name</label> -->
+<!--     <input type="text" placeholder="Type something…"> -->
+<!--     <span class="help-block">Example block-level help text here.</span> -->
+<!--     <label class="checkbox"> -->
+<!--       <input type="checkbox"> Check me out -->
+<!--     </label> -->
+<!--     <button type="submit" class="btn">Submit</button> -->
+<!--   </fieldset> -->
+<!-- </form> -->
+
+
+<%= form_for(@pregunta) do |f| %>
+  <fieldset>
+    <p id="pregunta">
+      Pregunta: 
+      <br><span class="muted">¿Qué puedo hacer como ciudadano colombiano para ... </span> 
+      <br><%= f.text_field :topico %> <span class="muted">?</span>
+      <br><small class="muted"><i>Recuerde que lorem ipsum dolorem sit amet sit amet recuerde que lorem ipsum dolorem sit amet.</i></small>
+    </p>
+
+    <p id="texto-complementario">
+      Texto Complementario:
+      <span id="formato"><small><a href="#">Vea opciones de formato.</a></small></span>
+      <br><%= f.text_area :cuerpo, {:cols=>"", :rows=>"8"}  %>
+      <br><small class="muted"><i>Recuerde que lorem ipsum dolorem sit amet.</i></small>
+    </p>
+
+    <p id="texto-complementario">
+      Etiquetas:
+      <br><%= f.text_field :topico %>
+      <br><small class="muted"><i>Separadas por comas</i></small>
+    </p>
+
+    <% if @pregunta.errors.any? %>
+      <div class="alert alert-error">
+        <strong>Atención!</strong>
+        <br>Debe corregir los siguientes errores para poder formular su pregunta:
+        <ul>
+          <li>La pregunta es muy larga</li>
+          <li>El texto complementario tal cosa</li>
+          <li>Los tags pascuales pascuales</li>
+          <%# <% @pregunta.errors.full_messages.each do |msg| %>
+            <%#   <li><%= msg %></li>
+            <%# <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p class="actions">
+      <%= f.submit raw("Formule su pregunta &raquo;"), :class=>"btn btn-primary" %>
+    </p>
+  </fieldset>
+<% end %>
+
+
+
+

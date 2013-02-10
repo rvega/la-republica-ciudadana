@@ -12,4 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
+//= require bootstrap-wysihtml5/index
+//= require bootstrap-wysihtml5/locales/es-AR
 //= require_tree .
