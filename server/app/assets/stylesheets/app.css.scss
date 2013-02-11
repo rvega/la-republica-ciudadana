@@ -3,112 +3,211 @@
 // #==========#
 // #  LAYOUT  #
 // #==========#
-body{
-  padding-top: 50px;
-}
-
-.navbar{
-  .brand{
-    margin-left:0px;
+  .hidden{
+    display:none;
   }
-}
 
-.navbar-search{
-  margin-right: 20px;
-
-  input{
-    width:120px;
+  body{
+    padding-top: 50px;
   }
-}
 
-footer {
-  text-align: center;
-  padding: 30px 0;
-  margin-top: 70px;
-  border-top: 1px solid #e5e5e5;
-  background-color: #f5f5f5;
-}
-footer p {
-  margin-bottom: 0;
-  color: #777;
-}
-.footer-links {
-  margin: 10px 0;
-}
-.footer-links li {
-  display: inline;
-  padding: 0 2px;
-}
-.footer-links li:first-child {
-  padding-left: 0;
-}
+  .navbar{
+    .brand{
+      margin-left:0px;
+    }
+  }
+
+  .navbar-search{
+    margin-right: 20px;
+
+    input{
+      width:120px;
+    }
+  }
+
+  h3, h2{
+    line-height: normal;
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 70px;
+    border-top: 1px solid #e5e5e5;
+    background-color: #f5f5f5;
+  }
+
+  footer p {
+    margin-bottom: 0;
+    color: #777;
+  }
+
+  .footer-links {
+    margin: 10px 0;
+  }
+
+  .footer-links li {
+    display: inline;
+    padding: 0 2px;
+  }
+
+  .footer-links li:first-child {
+    padding-left: 0;
+  }
 
 // #======================#
 // #  LISTA DE PREGUNTAS  #
 // #======================#
-#preguntas-lista{
-  list-style-type:none;
-  padding:0px 10px;
-  margin:0px;
+  #preguntas-lista{
+    list-style-type:none;
+    padding:0px 10px;
+    margin:0px;
 
-  .num-respuestas, .num-comentarios{
-    padding-top:8px;
-    display:block;
-    width:35px;
-    float:left;
-  }
+    .num-respuestas, .num-comentarios{
+      padding-top:8px;
+      display:block;
+      width:35px;
+      float:left;
+    }
 
-  h3{
-    padding-left:75px;
-    line-height: normal;
+    h3{
+      padding-left:75px;
+    }
   }
-}
 
 // #==================#
 // #  NUEVA PREGUNTA  #
 // #==================#
-#nueva-pregunta{
-  .hero-unit{
-    padding:30px;
-    font-weight:normal;
-  }  
+  #nueva-pregunta{
+    .hero-unit{
+      padding:30px;
+      font-weight:normal;
+    }  
 
-  p{
-    margin-bottom: 25px;
-  }
-  #pregunta{
-    font-size:16px;
-    line-height:normal;
-    small{
-      font-size:12px;
+    p{
+      margin-bottom: 25px;
+    }
+    #pregunta{
+      font-size:16px;
+      line-height:normal;
+      small{
+        font-size:12px;
+      }
+    }
+
+    #pregunta_topico{
+      margin:0px;
+      vertical-align:middle;
+      width: 94%;
+    }
+
+    #texto-complementario{
+      font-size:16px;
+      line-height:normal;
+      small{
+        font-size:12px;
+      }
+    }
+
+    #pregunta_cuerpo{
+      margin:0px;
+      width: 94%;
+    }
+
+    ul.wysihtml5-toolbar > li{
+      margin-bottom:3px;
+    }
+
+    .alert{
+      font-size:16px;
+      width: 89%;
     }
   }
 
-  #pregunta_topico{
-    margin:0px;
-    vertical-align:middle;
-    width: 94%;
-  }
-
-  #texto-complementario{
-    font-size:16px;
-    line-height:normal;
-    small{
-      font-size:12px;
+// #====================#
+// #  DETALLE PREGUNTA  #
+// #====================#
+  #detalle-pregunta{
+    .votos{
+      width:83px;
+      position:relative;
+      float:left;
+      .mas{
+        position:absolute;
+        top:0px;
+        left:0px;
+      }
+      .menos{
+        position:absolute;
+        top:14px;
+        left:0px;
+      }
+      .numeros{
+        position:absolute;
+        top:13px;
+        left:17px;
+        text-align:center;
+        line-height:11px;
+      }
+      .votos-total{
+        font-size:35px;
+      }
+      .votos-mas{
+        font-size:12px;
+        color: #468847;
+      }
+      .votos-menos{
+        font-size:12px;
+        color: #b94a48;
+      }
     }
-  }
+  
+    .tags .label a{
+      color:#FFF;
+    }
 
-  #pregunta_cuerpo{
-    margin:0px;
-    width: 94%;
-  }
+    .indent-1{
+      margin-left: 84px;
+      .meta{
+        font-size:13px;
+        color: #999;
+        font-style:italic;
+      }
+    }
 
-  ul.wysihtml5-toolbar > li{
-    margin-bottom:3px;
-  }
+    #comentarios{
+      margin-left: 84px;
+      .comentario{
+        margin-bottom: 20px;
+      }
+      .icon-comment{
+        margin-top:3px;
+        display:block;
+        float:left;
+      }
+      .cuerpo-comentario{
+        line-height: normal;
+        font-size:13px;
+        color: #999;
+        margin-left: 30px;
+      }
+      #agregar-comentario{
+        margin-left: 30px;
+      }
+      
+      #formulario-comentario{
+        margin-left: 30px;
+        textarea{
+          width:80%;
+        }
+        .alert{
+          width:75%;
+          margin-bottom:10px;
+        }
+      }
+    }
 
-  .alert{
-    font-size:16px;
-    width: 89%;
-  }
-}
+    h3{
+      margin-top:25px;
+    }
+  } 

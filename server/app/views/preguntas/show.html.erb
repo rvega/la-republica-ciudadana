@@ -1,3 +1,132 @@
+<div id="detalle-pregunta">
+  <h2>¿Qué puedo hacer como ciudadano colombiano para protestar?</h2>
+  <hr>
+
+  <!-- ================ -->
+  <!--  VOTOS PREGUNTA  -->
+  <!-- ================ -->
+  <div class="votos">
+    <a class="mas" href="#"><i class="icon-plus-sign"></i></a>
+    <a class="menos" href="#"><i class="icon-minus-sign"></i></a>
+    <div class="numeros">
+      <span class="votos-total">666</span>
+      <br><span class="votos-mas">+8</span> 
+      <span class="votos-menos">-2</span>
+    </div>
+  </div>
+
+
+  <!-- ================= -->
+  <!--  CUERPO PREGUNTA  -->
+  <!-- ================= -->
+  <div class="indent-1">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p class="meta">Pregunta formulada por <a href="#">Rafael Vega</a> en Febrero 8 de 2013 a las 10:00pm.</p>
+    <p class="tags"><span class="label"><a href="#">Tag 1</a></span> <span class="label"><a href="#">Tag 1</a></span> <span class="label"><a href="#">Tag 1</a></span></p>
+  </div>
+
+  <!-- ====================== -->
+  <!--  COMENTARIOS PREGUNTA  -->
+  <!-- ====================== -->
+  <div id="comentarios">
+    <hr>
+    <% 3.times do %>
+      <div class="comentario">
+        <i class="icon-comment"></i>
+        <p class="cuerpo-comentario">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          – <i><a href="#">Rafael Vega</a> Feb 8 2013 a las 3:00pm</i>
+        </p>
+      </div>
+    <% end %>
+
+    <!-- ================= -->
+    <!--  FORM COMENTARIO  -->
+    <!-- ================= -->
+    <a id="agregar-comentario" href="#" class="btn btn-mini">Agregue un comentario</a>
+    <form id="formulario-comentario" action=" " class="hidden">
+      <textarea rows="4" cols=""></textarea>
+      <% if false %>
+        <div class="alert alert-error">
+          <strong>Atención!</strong>
+          <br>Debe corregir los siguientes errores para poder enviar su formulario:
+          <ul>
+            <li>El comentario tal cosa.</li>
+          </ul>
+        </div>
+      <% end %>
+      <button type="submit" class="btn btn-primary btn-small">Agregue su comentario</button>
+    </form>
+  </div>
+
+  <!-- ============ -->
+  <!--  RESPUESTAS  -->
+  <!-- ============ -->
+  <h3>3 Respuestas</h3>
+  <hr>
+
+  <% 3.times do %>
+    <!-- ================= -->
+    <!--  VOTOS RESPUESTA  -->
+    <!-- ================= -->
+    <div class="votos">
+      <a class="mas" href="#"><i class="icon-plus-sign"></i></a>
+      <a class="menos" href="#"><i class="icon-minus-sign"></i></a>
+      <div class="numeros">
+        <span class="votos-total">666</span>
+        <br><span class="votos-mas">+8</span> 
+        <span class="votos-menos">-2</span>
+      </div>
+    </div>
+
+    <!-- ================== -->
+    <!--  CUERPO RESPUESTA  -->
+    <!-- ================== -->
+    <div class="indent-1">
+      <p>lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p class="meta">Respuesta ingresada por <a href="#">rafael vega</a> en febrero 8 de 2013 a las 10:00pm.</p>
+    </div>
+
+    <!-- ====================== -->
+    <!--  COMENTARIOS RESPUESTA  -->
+    <!-- ====================== -->
+    <div id="comentarios">
+      <hr>
+      <% 3.times do %>
+      <div class="comentario">
+        <i class="icon-comment"></i>
+        <p class="cuerpo-comentario">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+          – <i><a href="#">Rafael Vega</a> Feb 8 2013 a las 3:00pm</i>
+        </p>
+      </div>
+      <% end %>
+
+      <!-- ================= -->
+      <!--  FORM COMENTARIO  -->
+      <!-- ================= -->
+      <a id="agregar-comentario" href="#" class="btn btn-mini">Agregue un comentario</a>
+      <form id="formulario-comentario" action=" " class="hidden">
+        <textarea rows="4" cols=""></textarea>
+        <% if false %>
+        <div class="alert alert-error">
+          <strong>Atención!</strong>
+          <br>Debe corregir los siguientes errores para poder enviar su formulario:
+          <ul>
+            <li>El comentario tal cosa.</li>
+          </ul>
+        </div>
+        <% end %>
+        <button type="submit" class="btn btn-primary btn-small">Agregue su comentario</button>
+      </form>
+    </div>
+    <hr>
+  <% end %>
+
+
+</div>
+
 <p id="notice"><%= notice %></p>
 
 <p>

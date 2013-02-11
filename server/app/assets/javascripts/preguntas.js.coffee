@@ -13,3 +13,8 @@ $(document).ready ->
       locale:'es-AR',
       color:true,
     false
+
+  $('#agregar-comentario').click ->
+    $('#agregar-comentario').hide()
+    $('#formulario-comentario').show()
+    false
