@@ -11,4 +11,5 @@
  *= require_self
  *= require_tree .
  *= require bootstrap-wysihtml5/index.css
+ *= require bootstrap-wysihtml5/wysiwyg-color.css
  */

@@ -11,7 +11,7 @@
 <!--LISTA PREGUNTAS-->
 <!--===============-->
 <ul id="preguntas-lista">
-  <% 5.times do%>
+  <% @preguntas.each do |pregunta| %>
     <li>
       <div class="num-respuestas" data-toggle="tooltip" title="Esta pregunta tiene 88 respuestas.">
         88<i class="icon-ok"></i>
@@ -20,26 +20,15 @@
         00<i class="icon-comment"></i>
       </div>
       <h3>
-        <a href="#"><span class="muted">
-            ¿Qué puedo hacer como ciudadano colombiano para</span> protestar lorem ipsum dolorem sit amet<span class="muted">?
+        <a href="<%= pregunta_path(pregunta) %>"><span class="muted">
+          ¿Qué puedo hacer como ciudadano colombiano para</span> <%= pregunta.topico %>
+          <span class="muted">?</span>
         </span></a>
       </h3>
-      <p class="tags"><span data-toggle="tooltip" title="Esta pregunta ha sido etiquetada Tag 1." class="label"><a  data-toggle="tooltip" title="Esta pregunta ha sido etiquetada Tag 1." href="#">Tag 1</a></span> <span  data-toggle="tooltip" title="Esta pregunta ha sido etiquetada Tag 1." class="label"><a href="#">Tag 1</a></span> <span  data-toggle="tooltip" title="Esta pregunta ha sido etiquetada Tag 1." class="label"><a href="#">Tag 1</a></span></p>
-      <hr>
-    </li>
-    <li>
-      <div class="num-respuestas" data-toggle="tooltip" title="Esta pregunta tiene 88 respuestas.">
-        88<i class="icon-ok"></i>
-      </div>
-      <div class="num-comentarios" data-toggle="tooltip" title="Esta pregunta tiene 88 comentarios.">
-        00<i class="icon-comment"></i>
-      </div>
-      <h3>
-        <a href="#"><span class="muted">
-            ¿Qué puedo hacer como ciudadano colombiano para</span> acordar recordar aplacar<span class="muted">?
-        </span></a>
-      </h3>
-      <p class="tags"><span  data-toggle="tooltip" title="Esta pregunta ha sido etiquetada Tag 1." class="label"><a href="#">Tag 1</a></span> <span  data-toggle="tooltip" title="Esta pregunta ha sido etiquetada Tag 1." class="label"><a href="#">Tag 2</a></span></p>
+      <p class="tags">
+        <% pregunta.etiquetas.each do |e| %>
+          <span data-toggle="tooltip" title="Esta pregunta ha sido etiquetada <%= e.etiqueta %>." class="label"><a href="#"><%= e.etiqueta %></a></span>
+        <% end %>
       <hr>
     </li>
   <% end %>
@@ -59,29 +48,3 @@
     <li><a href="#">&raquo;</a></li>
   </ul>
 </div>
-
-<!-- <h1>Listing preguntas</h1> -->
-<!--  -->
-<!-- <table> -->
-<!--   <tr> -->
-<!--     <th>Topico</th> -->
-<!--     <th>Cuerpo</th> -->
-<!--     <th></th> -->
-<!--     <th></th> -->
-<!--     <th></th> -->
-<!--   </tr> -->
-<!--  -->
-<!-- <% @preguntas.each do |pregunta| %> -->
-<!--   <tr> -->
-<!--     <td><%= pregunta.topico %></td> -->
-<!--     <td><%= pregunta.cuerpo %></td> -->
-<!--     <td><%= link_to 'Show', pregunta %></td> -->
-<!--     <td><%= link_to 'Edit', edit_pregunta_path(pregunta) %></td> -->
-<!--     <td><%= link_to 'Destroy', pregunta, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
-<!--   </tr> -->
-<!-- <% end %> -->
-<!-- </table> -->
-<!--  -->
-<!-- <br /> -->
-<!--  -->
-<!-- <%= link_to 'New Pregunta', new_pregunta_path %> -->

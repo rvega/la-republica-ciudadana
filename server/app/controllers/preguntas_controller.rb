@@ -54,6 +54,7 @@ class PreguntasController < ApplicationController
   # POST /preguntas
   # POST /preguntas.json
   def create
+    # Clean html input
     @pregunta = Pregunta.new(params[:pregunta])
 
     respond_to do |format|
