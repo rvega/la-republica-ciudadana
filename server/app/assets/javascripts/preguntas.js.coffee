@@ -3,17 +3,20 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
-  $('#preguntas-lista [data-toggle=tooltip]').tooltip placement:'right'
+  #Tooltips
+  $('[data-toggle=tooltip]').tooltip placement:'right'
 
+  # WYSIWYG
   $('#formato').click ->
     $('#formato').hide()
-    $('#pregunta_cuerpo').wysihtml5
+    $('.wysiwyg').wysihtml5
       'font-styles':false,
       image:false,
       locale:'es-AR',
       color:true,
     false
 
+  # Formularios comentarios
   $('#agregar-comentario').click ->
     $('#agregar-comentario').hide()
     $('#formulario-comentario').show()

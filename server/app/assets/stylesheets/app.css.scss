@@ -1,12 +1,21 @@
 @import "bootstrap";
 
+.tags .label a{
+  color:#FFF;
+} 
+
+.tooltip{
+  // padding:5px !important;
+  // font-weight:normal;
+}
+
+.hidden{
+  display:none;
+}
+
 // #==========#
 // #  LAYOUT  #
 // #==========#
-  .hidden{
-    display:none;
-  }
-
   body{
     padding-top: 50px;
   }
@@ -70,7 +79,7 @@
       float:left;
     }
 
-    h3{
+    h3, .tags{
       padding-left:75px;
     }
   }
@@ -86,27 +95,18 @@
 
     p{
       margin-bottom: 25px;
-    }
-    #pregunta{
       font-size:16px;
       line-height:normal;
       small{
         font-size:12px;
       }
     }
+
 
     #pregunta_topico{
       margin:0px;
       vertical-align:middle;
       width: 94%;
-    }
-
-    #texto-complementario{
-      font-size:16px;
-      line-height:normal;
-      small{
-        font-size:12px;
-      }
     }
 
     #pregunta_cuerpo{
@@ -162,9 +162,6 @@
       }
     }
   
-    .tags .label a{
-      color:#FFF;
-    }
 
     .indent-1{
       margin-left: 84px;
@@ -209,5 +206,22 @@
 
     h3{
       margin-top:25px;
+    }
+
+    #nueva-respuesta{
+      p {
+        line-height: normal;
+      }
+      h3{
+        margin-bottom:0px;
+      }
+      hr{
+        margin-top:0px;
+      }
+
+      textarea{
+        width: 100%;
+      }
+
     }
   } 
