@@ -16,7 +16,7 @@ class PreguntasController < ApplicationController
   # GET /preguntas
   # GET /preguntas.json
   def index
-    @preguntas = Pregunta.all
+    @preguntas = Pregunta.includes(:etiquetas).all
 
     respond_to do |format|
       format.html # index.html.erb
