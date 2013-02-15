@@ -5,8 +5,11 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'sanitize'
 gem 'bootstrap-wysihtml5-rails'
+gem 'foreigner'
+gem 'immigrant'
 
 group :development do
+  gem 'debugger'
   gem 'sqlite3'
 end
 
@@ -24,7 +27,6 @@ end
 # gem 'capistrano'
 #
 # To use debugger
-# gem 'debugger'
 # gem 'omniauth'
 
 # gem 'omniauth-facebook'

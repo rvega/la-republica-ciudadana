@@ -1,4 +1,18 @@
 RepublicaCiudadana::Application.routes.draw do
+  devise_scope :user do
+    get 'usuarios/contrasena/recordar', :to=>'devise/password#new'
+    get 'usuarios/contrasena/editar', :to=>'devise/password#edit'
+    get 'usuarios/registro/registro/registrar', :to=>'devise/registrations#new'
+    get 'usuarios/registro/registro/editar', :to=>'devise/registrations#edit'
+  end
+  devise_for :usuarios, :path_names => {
+    :sign_in => 'ingreso', 
+    :sign_out => 'salida', 
+    :password => 'contrasena', 
+    :registration => 'registro'
+  }
+
+
   resources :preguntas, :path_names => { :new => 'nueva', :edit => 'editar' }
   root :to => 'preguntas#index'
 

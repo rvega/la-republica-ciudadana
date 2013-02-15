@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+rafa:
+  nombre: Rafael Vega
+  email: rafael@republicaciudadana.co
+  encrypted_password: <%= Usuario.new.send(:password_digest, '123123123') %>
+
+fanny:
+  nombre: Estefanía Piedrahita
+  email: estefania@republicaciudadana.co
+  encrypted_password: <%= Usuario.new.send(:password_digest, '123123123') %>
