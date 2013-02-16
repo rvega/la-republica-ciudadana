@@ -16,7 +16,9 @@ class PreguntasController < ApplicationController
   # GET /preguntas
   # GET /preguntas.json
   def index
-    @preguntas = Pregunta.includes(:etiquetas).all
+    @preguntas = Pregunta.includes(:etiquetas)
+      .paginate(:page => params[:pagina], :per_page=>20)
+      .order('created_at DESC')
 
     respond_to do |format|
       format.html # index.html.erb
