@@ -5,6 +5,7 @@
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'pregunta', 'preguntas'
   inflect.irregular 'etiqueta', 'etiquetas'
+  inflect.irregular 'respuesta', 'respuestas'
   
 #   inflect.plural /^(ox)$/i, '\1en'
 #   inflect.singular /^(ox)en/i, '\1'

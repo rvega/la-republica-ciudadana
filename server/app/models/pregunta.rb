@@ -2,9 +2,11 @@ class Pregunta < ActiveRecord::Base
   attr_accessible :cuerpo, :topico, :etiquetas_list
   has_many :etiquetas
   has_many :votos, :as=>:votable
-  
+  has_many :respuestas
+
   validates :topico, :length => { :in => 3..150 }
   validates :cuerpo, :length => { :in => 15..30000 }
+  validates :etiquetas_list, :presence=>true
 
   def etiquetas_list=(new_value)
     etiquetas_names = new_value.split(',')

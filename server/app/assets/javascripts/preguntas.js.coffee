@@ -3,6 +3,13 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
+  # Anchor lnks scroll offset
+  if hash=window.location.hash
+    setTimeout ->
+      y = $(hash).offset().top - 50
+      $('body').scrollTop(y)
+    ,100
+
   #Tooltips
   $('[data-toggle=tooltip]').tooltip placement:'right'
 

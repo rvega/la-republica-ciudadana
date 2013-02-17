@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  cuerpo: MyString
+  usuario_id: 1
+
+two:
+  cuerpo: MyString
+  usuario_id: 1

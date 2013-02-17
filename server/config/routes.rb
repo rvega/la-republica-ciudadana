@@ -1,9 +1,10 @@
 RepublicaCiudadana::Application.routes.draw do
-  devise_scope :user do
-    get 'usuarios/contrasena/recordar', :to=>'devise/password#new'
-    get 'usuarios/contrasena/editar', :to=>'devise/password#edit'
-    get 'usuarios/registro/registro/registrar', :to=>'devise/registrations#new'
-    get 'usuarios/registro/registro/editar', :to=>'devise/registrations#edit'
+  devise_scope :usuario do
+    get 'usuarios/contrasena/recordar', :to=>'devise/passwords#new'
+    get 'usuarios/contrasena/editar', :to=>'devise/passwords#edit'
+    get 'usuarios/registrar', :to=>'devise/registrations#new'
+    get 'usuarios/registro/editar', :to=>'devise/registrations#edit'
+    get 'usuarios/salir', :to=>'devise/sessions#destroy'
   end
   devise_for :usuarios, :path_names => {
     :sign_in => 'ingreso', 
@@ -12,8 +13,8 @@ RepublicaCiudadana::Application.routes.draw do
     :registration => 'registro'
   }
 
-
   resources :preguntas, :path_names => { :new => 'nueva', :edit => 'editar' }
+  resources :respuestas
   root :to => 'preguntas#index'
 
   # The priority is based upon order of creation:

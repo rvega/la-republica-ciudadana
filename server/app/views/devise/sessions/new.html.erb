@@ -1,0 +1,39 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html=>{:class=>'form-signin'}) do |f| %>
+  <h2>Ingrese</h2>
+
+  <% if notice %>
+    <p class="alert alert-success">
+      <%= notice %>
+    </p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-error">
+      <%= alert %>
+    </p> 
+  <% end %>
+
+  <p>
+    <%= f.email_field :email, :autofocus => true, :class=>'input-block-level', :placeholder=>'Email' %>
+  </p>
+  <p>
+    <%= f.password_field :password, :class=>'input-block-level', :placeholder=>'Contraseña' %>
+  </p>
+
+
+
+  <% if devise_mapping.rememberable? -%>
+    <p>
+      <label>
+        <%= f.check_box :remember_me %> No cierre sesión
+      </label>
+    </p>
+  <% end -%>
+
+  <p>
+    <%= f.submit raw('Ingrese &raquo;'), :class=>'btn btn-primary' %>
+  </p>
+  <p id="links">
+    <%= render "devise/shared/links" %>
+  </p>
+<% end %>
+

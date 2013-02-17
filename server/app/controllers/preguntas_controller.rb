@@ -1,21 +1,11 @@
 class PreguntasController < ApplicationController
-  layout :choose_layout
-
-  private
-  def choose_layout
-    case action_name
-    when "index"
-      "home"
-    else
-      "application"
-    end
-  end
-
   public
 
   # GET /preguntas
   # GET /preguntas.json
   def index
+    @is_home = true
+
     @preguntas = Pregunta.includes(:etiquetas)
       .paginate(:page => params[:pagina], :per_page=>20)
       .order('created_at DESC')
@@ -30,6 +20,7 @@ class PreguntasController < ApplicationController
   # GET /preguntas/1.json
   def show
     @pregunta = Pregunta.find(params[:id])
+    @respuesta = Respuesta.new
 
     respond_to do |format|
       format.html # show.html.erb
@@ -56,7 +47,6 @@ class PreguntasController < ApplicationController
   # POST /preguntas
   # POST /preguntas.json
   def create
-    # Clean html input
     @pregunta = Pregunta.new(params[:pregunta])
 
     respond_to do |format|
