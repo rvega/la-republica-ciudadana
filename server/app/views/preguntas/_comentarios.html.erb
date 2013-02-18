@@ -1,0 +1,9 @@
+<% comentarios.each do |comentario| %>
+  <div id="comentario_<%= comentario.id %>" class="comentario">
+    <i class="icon-comment"></i>
+    <p class="cuerpo-comentario">
+      <%= comentario.cuerpo %>
+      – <i><a href="#">Rafael Vega</a> Feb 8 2013 a las 3:00pm</i>
+    </p>
+  </div>
+<% end %>

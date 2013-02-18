@@ -158,6 +158,7 @@
 // #====================#
   #detalle-pregunta{
     .user_input_html{
+      word-wrap: break-word;
       blockquote{
         padding:0px;
         margin: 0px 0px 0px 30px;
@@ -219,6 +220,7 @@
         float:left;
       }
       .cuerpo-comentario{
+        word-wrap: break-word;
         line-height: normal;
         font-size:13px;
         color: #999;

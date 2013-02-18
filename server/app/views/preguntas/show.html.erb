@@ -35,43 +35,12 @@
   <!-- ====================== -->
   <div id="comentarios">
     <hr>
-    <% @pregunta.comentarios.each do |comentario| %>
-      <div id="comentario_<%= comentario.id %>" class="comentario">
-        <i class="icon-comment"></i>
-        <p class="cuerpo-comentario">
-          <%= comentario.cuerpo %>
-          – <i><a href="#">Rafael Vega</a> Feb 8 2013 a las 3:00pm</i>
-        </p>
-      </div>
-    <% end %>
+    <%= render 'preguntas/comentarios', :comentarios=>@pregunta.comentarios %>
 
     <!-- ================= -->
     <!--  FORM COMENTARIO  -->
     <!-- ================= -->
-    <a id="agregar-comentario-pregunta" href="#" class="btn btn-mini agregar-comentario" data-form="form-comentario-pregunta">Publique un comentario</a>
-    <%= form_for(@comentario, 
-                 :url=>comentarios_path(@comentario, :anchor=>'form-comentario-pregunta'), 
-                 :html=>{:class=>'hidden nuevo-comentario', :id=>"form-comentario-pregunta"}
-                ) do |f| %>
-      <%= f.hidden_field :pregunta_id, :value=>@pregunta.id %>
-      <%= f.hidden_field :comentable_id, :value=>@pregunta.id %>
-      <%= f.hidden_field :comentable_type, :value=>'Pregunta' %>
-
-      <% if @comentario.errors.any? %>
-        <div class="alert alert-error">
-          <strong>Atención!</strong>
-          <br>Debe corregir los siguientes errores para poder publicar su comentario:
-          <ul>
-            <% @comentario.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <%= f.text_area :cuerpo, {:cols=>"", :rows=>"4"}  %>
-      <%= f.submit raw("Publique su comentario"), :class=>"btn btn-primary btn-small" %>
-    <% end %>
+    <%= render 'preguntas/form_comentario', :comentario=>@comentario, :comentable=>@pregunta, :comentable_type=>'Pregunta', :pregunta_id=>@pregunta.id %>
   </div>
 
   <!-- ============ -->
@@ -111,46 +80,12 @@
     <!-- ====================== -->
     <div id="comentarios">
       <hr>
-      <% respuesta.comentarios.each do |comentario| %>
-        <div id="comentario_<%= comentario.id %>" class="comentario">
-          <i class="icon-comment"></i>
-          <p class="cuerpo-comentario">
-            <%= comentario.cuerpo %>
-            – <i><a href="#">Rafael Vega</a> Feb 8 2013 a las 3:00pm</i>
-          </p>
-        </div>
-      <% end %>
+      <%= render 'preguntas/comentarios', :comentarios=>respuesta.comentarios %>
 
       <!-- ================= -->
       <!--  FORM COMENTARIO  -->
       <!-- ================= -->
-      <a id="agregar-comentario-<%= respuesta.id %>" href="#" class="btn btn-mini agregar-comentario" data-form="form-comentario-<%= respuesta.id %>">Publique un comentario</a>
-      <%= form_for(@comentario, 
-                   :url=>comentarios_path(@comentario, :anchor=>"form-comentario-#{respuesta.id}"), 
-                   :html=>{:class=>'hidden nuevo-comentario', :id=>"form-comentario-#{respuesta.id}"}
-                  ) do |f| %>
-        <%= f.hidden_field :pregunta_id, :value=>@pregunta.id %>
-        <%= f.hidden_field :comentable_id, :value=>respuesta.id %>
-        <%= f.hidden_field :comentable_type, :value=>'Respuesta' %>
-
-        <% if @comentario.errors.any? %>
-          <div class="alert alert-error">
-            <strong>Atención!</strong>
-            <br>Debe corregir los siguientes errores para poder publicar su comentario:
-            <ul>
-              <% @comentario.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-        <%= f.text_area :cuerpo, {:cols=>"", :rows=>"4"}  %>
-        <%= f.submit raw("Publique su comentario"), :class=>"btn btn-primary btn-small" %>
-      <% end %>
-    </div>
-    <hr>
-  <% end %>
+      <%= render 'preguntas/form_comentario', :comentario=>@comentario, :comentable=>respuesta, :comentable_type=>'Respuesta', :pregunta_id=>@pregunta.id %>
 
   <!-- ====================== -->
   <!--  FORM NUEVA RESPUESTA  -->

@@ -1,0 +1,29 @@
+<% 
+  if comentable_type == 'Pregunta'
+    is_for = 'pregunta'
+  else
+    is_for = comentable.id
+  end
+%>
+
+<a id="agregar-comentario-<%= is_for %>" href="#" class="btn btn-mini agregar-comentario" data-form="form-comentario-<%= is_for %>">Publique un comentario</a>
+<%= form_for(comentario, :url=>comentarios_path(comentario, :anchor=>"form-comentario-#{is_for}"), :html=>{:class=>'hidden nuevo-comentario', :id=>"form-comentario-#{is_for}"}) do |f| %>
+  <%= f.hidden_field :pregunta_id, :value=>pregunta_id %>
+  <%= f.hidden_field :comentable_id, :value=>comentable.id %>
+  <%= f.hidden_field :comentable_type, :value=>comentable_type %>
+
+  <% if comentario.errors.any? %>
+    <div class="alert alert-error">
+      <strong>Atención!</strong>
+      <br>Debe corregir los siguientes errores para poder publicar su comentario:
+      <ul>
+        <% comentario.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.text_area :cuerpo, {:cols=>"", :rows=>"4"}  %>
+  <%= f.submit raw("Publique su comentario"), :class=>"btn btn-primary btn-small" %>
+<% end %>
