@@ -3,8 +3,14 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
+  # Open comentario form if needed
+  hash=window.location.hash
+  if hash == '#new_comentario'
+    $('#agregar-comentario').hide()
+    $('#new_comentario').show()
+  
   # Anchor lnks scroll offset
-  if hash=window.location.hash
+  if hash
     setTimeout ->
       y = $(hash).offset().top - 50
       $('body').scrollTop(y)
@@ -26,5 +32,5 @@ $(document).ready ->
   # Formularios comentarios
   $('#agregar-comentario').click ->
     $('#agregar-comentario').hide()
-    $('#formulario-comentario').show()
+    $('#new_comentario').show()
     false

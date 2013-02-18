@@ -14,6 +14,7 @@ class RespuestasController < ApplicationController
         format.json { render json: @respuesta, status: :created, location: @respuesta }
       else
         format.html do 
+          @comentario = Comentario.new
           @pregunta = Pregunta.find(@respuesta.pregunta_id)
           render template: "preguntas/show"
         end

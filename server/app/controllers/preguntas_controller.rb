@@ -21,6 +21,7 @@ class PreguntasController < ApplicationController
   def show
     @pregunta = Pregunta.find(params[:id])
     @respuesta = Respuesta.new
+    @comentario = Comentario.new
 
     respond_to do |format|
       format.html # show.html.erb

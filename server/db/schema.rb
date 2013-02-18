@@ -15,9 +15,11 @@ ActiveRecord::Schema.define(:version => 20130217005043) do
 
   create_table "comentarios", :force => true do |t|
     t.integer  "usuario_id"
+    t.integer  "comentable_id"
+    t.string   "comentable_type"
     t.string   "cuerpo"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "etiquetas", :force => true do |t|
