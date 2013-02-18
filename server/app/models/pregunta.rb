@@ -26,4 +26,17 @@ class Pregunta < ActiveRecord::Base
   def etiquetas_list
     self.etiquetas.map {|e| e.etiqueta}.join(',')
   end
+
+  def comentarios_count
+    c = self.comentarios.count 
+    c2 = 0
+    self.respuestas.each do |r|
+      c2 = c2 + r.comentarios.count
+    end
+    c + c2
+  end
+
+  def respuestas_count
+    self.respuestas.count
+  end
 end

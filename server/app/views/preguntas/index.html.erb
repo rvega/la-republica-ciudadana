@@ -25,11 +25,11 @@
 <ul id="preguntas-lista">
   <% @preguntas.each do |pregunta| %>
     <li>
-      <div class="num-respuestas" data-toggle="tooltip" title="Esta pregunta tiene 88 respuestas.">
-        88<i class="icon-ok"></i>
+      <div class="num-respuestas" data-toggle="tooltip" title="Esta pregunta tiene <%= pluralize(pregunta.respuestas_count, 'respuesta')%>.">
+        <%= pregunta.respuestas_count %><i class="icon-ok"></i>
       </div>
-      <div class="num-comentarios" data-toggle="tooltip" title="Esta pregunta tiene 88 comentarios.">
-        00<i class="icon-comment"></i>
+      <div class="num-comentarios" data-toggle="tooltip" title="Esta pregunta tiene <%= pluralize(pregunta.comentarios_count, 'comentarios')%>.">
+        <%= pregunta.comentarios_count %><i class="icon-comment"></i>
       </div>
       <h3>
         <a href="<%= pregunta_path(pregunta) %>"><span class="muted">
