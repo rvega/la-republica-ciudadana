@@ -1,0 +1,18 @@
+<div class="votos" id="votos_<%= votable.id %>" >
+  <a data-votable-id="<%= votable.id %>" data-votable-type="<%= votable.class.name %>" data-toggle="tooltip" title='Marque esta <%= votable.class.name.downcase %> como "interesante"' class="mas" href="#"><i class="icon-plus-sign"></i> </a>
+  <a data-votable-id="<%= votable.id %>" data-votable-type="<%= votable.class.name %>" data-toggle="tooltip" title='Marque esta <%= votable.class.name.downcase %> como "no interesante"' class="menos" href="#"><i class="icon-minus-sign"></i> </a>
+  <div class="numeros">
+    <span class="votos-total"><%= votable.votos_total %></span>
+    <br><span class="votos-mas"><%= votable.votos_mas %></span> 
+    <span class="votos-menos">-<%= votable.votos_menos %></span>
+  </div>
+
+  <% if false %>
+    <div class="alert alert-error">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    Usted ya votó por esta <%= votable.class.name.downcase %>
+    </div>
+  <% end %>
+
+</div>
+

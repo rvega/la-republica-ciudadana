@@ -5,7 +5,7 @@
 $(document).ready ->
   hash=window.location.hash
 
-  # Open comentario form if needed
+  # Abrir form comentario si se necesita
   unless hash.indexOf('form-comentario')==-1
     partialId =  hash.substring( hash.indexOf('-') )
     idBtn = "agregar#{partialId}"
@@ -25,7 +25,7 @@ $(document).ready ->
     form.show()
     false
   
-  # Anchor lnks scroll offset
+  # Anchor links scroll offset
   if hash
     setTimeout ->
       y = $(hash).offset().top - 50
@@ -43,5 +43,36 @@ $(document).ready ->
       image:false,
       locale:'es-AR',
       color:true,
+    false
+
+  vote = (value, id, type) ->
+    $.ajax(
+      url: '/votos.json',
+      type: 'POST',
+      data:{
+        voto:{
+          votable_type: type,
+          votable_id: id,
+          value: value
+        }
+      }
+      success: (response) ->
+        ctnr = '#votos_'+id
+        $(ctnr + ' .votos-total').html(response.votos_total)
+        $(ctnr + ' .votos-mas').html(response.votos_mas)
+        $(ctnr + ' .votos-menos').html('-'+response.votos_menos)
+      ,
+      error: (response) ->
+        alert 'err'
+    )
+
+  $('.votos .menos').click (event) ->
+    element = $(event.target).parent('a')
+    vote -1, element.attr('data-votable-id'), element.attr('data-votable-type')
+    false
+
+  $('.votos .mas').click (event) ->
+    element = $(event.target).parent('a')
+    vote 1, element.attr('data-votable-id'), element.attr('data-votable-type')
     false
 

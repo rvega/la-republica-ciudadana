@@ -16,6 +16,7 @@ RepublicaCiudadana::Application.routes.draw do
   resources :preguntas, :path_names => { :new => 'nueva', :edit => 'editar' }
   resources :respuestas
   resources :comentarios
+  resources :votos
   root :to => 'preguntas#index'
 
   # The priority is based upon order of creation:

@@ -5,16 +5,7 @@
   <!-- ================ -->
   <!--  VOTOS PREGUNTA  -->
   <!-- ================ -->
-  <div class="votos">
-    <a data-toggle="tooltip" title='Marque esta pregunta como "interesante"' class="mas" href="#"><i class="icon-plus-sign"></i></a>
-    <a data-toggle="tooltip" title='Marque esta pregunta como "no interesante"' class="menos" href="#"><i class="icon-minus-sign"></i></a>
-    <div class="numeros">
-      <span class="votos-total">666</span>
-      <br><span class="votos-mas">+8</span> 
-      <span class="votos-menos">-2</span>
-    </div>
-  </div>
-
+  <%= render 'preguntas/votos', :votable=>@pregunta %>
 
   <!-- ================= -->
   <!--  CUERPO PREGUNTA  -->
@@ -56,14 +47,7 @@
     <!-- ================= -->
     <!--  VOTOS RESPUESTA  -->
     <!-- ================= -->
-    <div class="votos">
-      <a data-toggle="tooltip" title='Marque esta respuesta como "correcta"' class="mas" href="#"><i class="icon-plus-sign"></i></a>
-      <a data-toggle="tooltip" title='Marque esta respuesta como "incorrecta"' class="menos" href="#"><i class="icon-minus-sign"></i></a> <div class="numeros">
-        <span class="votos-total">666</span>
-        <br><span class="votos-mas">+8</span> 
-        <span class="votos-menos">-2</span>
-      </div>
-    </div>
+    <%= render 'preguntas/votos', :votable=>respuesta %>
 
     <!-- ================== -->
     <!--  CUERPO RESPUESTA  -->
@@ -86,6 +70,10 @@
       <!--  FORM COMENTARIO  -->
       <!-- ================= -->
       <%= render 'preguntas/form_comentario', :comentario=>@comentario, :comentable=>respuesta, :comentable_type=>'Respuesta', :pregunta_id=>@pregunta.id %>
+
+    </div>
+    <hr>
+  <% end %>
 
   <!-- ====================== -->
   <!--  FORM NUEVA RESPUESTA  -->
