@@ -2,6 +2,10 @@ class ComentariosController < ApplicationController
   # POST /comentarios
   # POST /comentarios.json
   def create
+    # Pregunta id
+    pid = params[:comentario][:pregunta_id]
+    params[:comentario].delete(:pregunta_id)
+
     # Crear nuevo comentario
     @comentario = Comentario.new(params[:comentario])
 
@@ -20,25 +24,14 @@ class ComentariosController < ApplicationController
     respond_to do |format|
       if @comentario.save
         format.html do 
-          if comentable_type == 'Pregunta'
-            pregunta_id = @comentario.comentable_id
-          else
-            # TODO:
-            # @pregunta = Pregunta.find(@comentario.)
-          end
-          redirect_to pregunta_url(pregunta_id, :anchor => "comentario_#{@comentario.id}"),
+          redirect_to pregunta_url(pid, :anchor => "comentario_#{@comentario.id}"),
             notice: 'Comentario was successfully created.'
         end
         format.json { render json: @comentario, status: :created, location: @comentario }
       else
         format.html do 
           @respuesta = Respuesta.new
-          if comentable_type == 'Pregunta'
-            @pregunta = Pregunta.find(@comentario.comentable_id)
-          else
-            # TODO:
-            # @pregunta = Pregunta.find(@comentario.)
-          end
+          @pregunta = Pregunta.find(pid)
           render template: "preguntas/show"
         end
         format.json { render json: @comentario.errors, status: :unprocessable_entity }
