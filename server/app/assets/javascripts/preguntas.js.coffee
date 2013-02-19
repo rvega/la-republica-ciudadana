@@ -45,7 +45,9 @@ $(document).ready ->
       color:true,
     false
 
+  # VOTOS
   vote = (value, id, type) ->
+    ctnr = '#votos_'+id
     $.ajax(
       url: '/votos.json',
       type: 'POST',
@@ -56,14 +58,21 @@ $(document).ready ->
           value: value
         }
       }
-      success: (response) ->
-        ctnr = '#votos_'+id
-        $(ctnr + ' .votos-total').html(response.votos_total)
-        $(ctnr + ' .votos-mas').html(response.votos_mas)
-        $(ctnr + ' .votos-menos').html('-'+response.votos_menos)
+      success: (data, status, xhr) ->
+        $(ctnr + ' .votos-total').html(data.votos_total)
+        $(ctnr + ' .votos-mas').html(data.votos_mas)
+        $(ctnr + ' .votos-menos').html('-'+data.votos_menos)
       ,
-      error: (response) ->
-        alert 'err'
+      error: (xhr, status, error) ->
+        template = """    
+          <div class="alert alert-error">
+          <a href="#" class="close" data-dismiss="alert">&times;</a>
+            {{msg}}
+          </div>
+        """
+        msg = JSON.parse(xhr.responseText).usuario_id
+        html = template.replace('{{msg}}', msg)
+        $(ctnr).append html
     )
 
   $('.votos .menos').click (event) ->
