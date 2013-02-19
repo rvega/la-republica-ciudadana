@@ -1,0 +1,39 @@
+<% 
+  if is_new
+    verbo = 'publicar'
+    verbo2 = 'Publique'
+    anchor = 'nueva-respuesta'
+    url = respuestas_path(respuesta, :anchor=>anchor)
+  else
+    verbo = 'editar'
+    verbo2 = 'Edite'
+    anchor = "edit_respuesta_#{respuesta.id}"
+    url = respuesta_path(respuesta, :anchor=>anchor)
+  end
+%>
+
+
+<%= form_for(respuesta, :url=>url) do |f| %>
+  <%= f.hidden_field :pregunta_id, :value=>@pregunta.id %>
+
+  <% if respuesta.errors.any? %>
+    <div class="alert alert-error">
+      <strong>Atención!</strong>
+      <br>Debe corregir los siguientes errores para poder <%= verbo %> su respuesta:
+      <ul>
+        <% respuesta.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <span id="formato"><small><a href="#">Vea opciones de formato.</a></small></span>
+    <br><%= f.text_area :cuerpo, {:cols=>"", :rows=>"8", :class=>'wysiwyg'}  %>
+    <br><small class="muted"><i>Recuerde que lorem ipsum dolorem sit amet.</i></small>
+  </p>
+  <p>
+    <%= f.submit raw("#{verbo2} su respuesta"), :class=>"btn btn-primary" %>
+  </p>
+<% end %>

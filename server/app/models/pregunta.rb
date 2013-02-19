@@ -41,4 +41,8 @@ class Pregunta < ActiveRecord::Base
   def respuestas_count
     self.respuestas.count
   end
+
+  def usuario_already_answered(usuario)
+    self.respuestas.where("usuario_id=?", usuario.id).count > 0
+  end
 end

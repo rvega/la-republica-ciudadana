@@ -16,7 +16,7 @@ $(document).ready ->
     # Si vamos a mostrar el form, es porque hay errores de validación, 
     # evite que se muestren otros forms al mismo tiempo:
     $('.agregar-comentario').hide()
-    
+
   # Formularios comentarios
   $('.agregar-comentario').click (event) ->
     $('.agregar-comentario').hide()
@@ -24,6 +24,31 @@ $(document).ready ->
     form = $('#'+btn.attr('data-form'))
     form.show()
     false
+
+  # Abrir form respuesta si se necesita
+  unless hash.indexOf('edit_respuesta')==-1
+    partialId =  hash.substring( hash.indexOf('_') + 1 )
+    debugger
+    idCuerpo = '#' + partialId + " .hideme"
+    idBtn = '#' + partialId + " .respuesta-edit-btn"
+    idForm = '#' + partialId + " .respuesta-edit-form"
+    $(idBtn).hide()
+    $(idCuerpo).hide()
+    $(idForm).show()
+    
+    # Si vamos a mostrar el form, es porque hay errores de validación, 
+    # evite que se muestren otros forms al mismo tiempo:
+    $('.agregar-comentario').hide()
+    
+  # Formularios respuestas
+  $('.respuesta-edit-btn').click (event) ->
+    btn = $(event.target)
+    id = btn.parents('.indent-1').attr('id')
+    $('#'+id+' .hideme').hide()
+    btn.hide()
+    $('#'+id+' .respuesta-edit-form').show()
+    false
+    
   
   # Anchor links scroll offset
   if hash

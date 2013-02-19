@@ -18,7 +18,7 @@
       Pregunta formulada por <a href="#">Rafael Vega</a> en Febrero 8 de 2013 a las 10:00pm.
     </p>
       <% if current_usuario.id == @pregunta.usuario_id %>
-        <p><a class="btn btn-small" href="<%= edit_pregunta_path %>"><i class="icon-pencil"></i> Editar pregunta.</a></p>
+        <p><a class="btn btn-small" href="<%= edit_pregunta_path(@pregunta) %>"><i class="icon-pencil"></i> Edite su pregunta.</a></p>
       <% end %>
     <p class="tags">
       <% @pregunta.etiquetas.each do |e| %>
@@ -58,10 +58,18 @@
     <!--  CUERPO RESPUESTA  -->
     <!-- ================== -->
     <div class="indent-1" id="respuesta_<%= respuesta.id %>">
-      <div class="user_input_html">
-        <%= respuesta.cuerpo.html_safe %>
+      <div class="hideme">
+        <div class="user_input_html">
+          <%= respuesta.cuerpo.html_safe %>
+        </div>
+        <p class="meta">Respuesta ingresada por <a href="#">rafael vega</a> en febrero 8 de 2013 a las 10:00pm.</p>
       </div>
-      <p class="meta">Respuesta ingresada por <a href="#">rafael vega</a> en febrero 8 de 2013 a las 10:00pm.</p>
+      <% if current_usuario.id == respuesta.usuario_id %>
+        <p><a class="respuesta-edit-btn btn btn-small" href="#"><i class="icon-pencil"></i> Edite su respuesta.</a></p>
+        <div class="respuesta-edit-form hidden">
+          <%= render 'preguntas/form_respuesta', :respuesta=>@editing_respuesta ? @respuesta : respuesta, :is_new=>false %>
+        </div>
+      <% end %>
     </div>
 
     <!-- ====================== -->
@@ -83,31 +91,10 @@
   <!-- ====================== -->
   <!--  FORM NUEVA RESPUESTA  -->
   <!-- ====================== -->
-  <div id="nueva-respuesta">
-    <h3>Su Respuesta</h3>
-    <%= form_for(@respuesta, :url=>respuestas_path(@respuesta, :anchor=>'nueva-respuesta')) do |f| %>
-      <%= f.hidden_field :pregunta_id, :value=>@pregunta.id %>
-
-      <% if @respuesta.errors.any? %>
-        <div class="alert alert-error">
-          <strong>Atención!</strong>
-          <br>Debe corregir los siguientes errores para poder publicar su respuesta:
-          <ul>
-            <% @respuesta.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <p>
-        <span id="formato"><small><a href="#">Vea opciones de formato.</a></small></span>
-        <br><%= f.text_area :cuerpo, {:cols=>"", :rows=>"8", :class=>'wysiwyg'}  %>
-        <br><small class="muted"><i>Recuerde que lorem ipsum dolorem sit amet.</i></small>
-      </p>
-      <p>
-        <%= f.submit raw("Publique su respuesta"), :class=>"btn btn-primary" %>
-      </p>
-    <% end %>
-  </div>
+  <% unless @pregunta.usuario_already_answered(current_usuario) %>
+    <div id="nueva-respuesta">
+      <h3>Su Respuesta</h3>
+      <%= render 'preguntas/form_respuesta', :respuesta=>@respuesta, :is_new=>true %>
+    </div>
+  <% end %>
 </div>
