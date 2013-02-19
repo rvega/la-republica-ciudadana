@@ -2,6 +2,8 @@ class Pregunta < ActiveRecord::Base
   include Mixins::Votable
 
   attr_accessible :cuerpo, :topico, :etiquetas_list
+
+  belongs_to :usuario
   has_many :etiquetas
   has_many :votos, :as=>:votable
   has_many :respuestas

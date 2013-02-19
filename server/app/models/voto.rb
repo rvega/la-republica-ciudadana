@@ -5,7 +5,6 @@ class Voto < ActiveRecord::Base
   belongs_to :usuario
   belongs_to :votable, :polymorphic=>true
 
-  # validates :value, :length => {:minimum => 10}
   validate :only_one_vote_per_user
 
   def only_one_vote_per_user

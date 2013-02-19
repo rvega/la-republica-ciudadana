@@ -14,7 +14,12 @@
     <div class="user_input_html">
       <%= @pregunta.cuerpo.html_safe %>
     </div>
-    <p class="meta">Pregunta formulada por <a href="#">Rafael Vega</a> en Febrero 8 de 2013 a las 10:00pm.</p>
+    <p class="meta">
+      Pregunta formulada por <a href="#">Rafael Vega</a> en Febrero 8 de 2013 a las 10:00pm.
+    </p>
+      <% if current_usuario.id == @pregunta.usuario_id %>
+        <p><a class="btn btn-small" href="<%= edit_pregunta_path %>"><i class="icon-pencil"></i> Editar pregunta.</a></p>
+      <% end %>
     <p class="tags">
       <% @pregunta.etiquetas.each do |e| %>
         <span data-toggle="tooltip" title="Esta pregunta ha sido etiquetada <%= e.etiqueta %>." class="label"><a href="#"><%= e.etiqueta %></a></span>

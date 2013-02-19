@@ -49,6 +49,7 @@ class PreguntasController < ApplicationController
   # POST /preguntas.json
   def create
     @pregunta = Pregunta.new(params[:pregunta])
+    @pregunta.usuario_id = current_usuario.id
 
     respond_to do |format|
       if @pregunta.save
@@ -79,13 +80,13 @@ class PreguntasController < ApplicationController
 
   # DELETE /preguntas/1
   # DELETE /preguntas/1.json
-  def destroy
-    @pregunta = Pregunta.find(params[:id])
-    @pregunta.destroy
+  # def destroy
+  #   @pregunta = Pregunta.find(params[:id])
+  #   @pregunta.destroy
 
-    respond_to do |format|
-      format.html { redirect_to preguntas_url }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to preguntas_url }
+  #     format.json { head :no_content }
+  #   end
+  # end
 end

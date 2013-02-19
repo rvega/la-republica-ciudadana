@@ -1,8 +1,12 @@
+<% 
+  verbo = is_edit ? 'editar' : 'formular'
+  verbo2 = is_edit ? 'Edite' : 'Formule'
+%>
 <%= form_for(@pregunta) do |f| %>
   <% if @pregunta.errors.any? %>
     <div class="alert alert-error">
       <strong>Atención!</strong>
-      <br>Debe corregir los siguientes errores para poder formular su pregunta:
+      <br>Debe corregir los siguientes errores para poder <%= verbo %> su pregunta:
       <ul>
         <% @pregunta.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -33,7 +37,7 @@
     </p>
 
     <p class="actions">
-      <%= f.submit raw("Formule su pregunta &raquo;"), :class=>"btn btn-primary" %>
+      <%= f.submit raw("#{verbo2} su pregunta &raquo;"), :class=>"btn btn-primary" %>
     </p>
   </fieldset>
 <% end %>
