@@ -9,7 +9,6 @@ gem 'foreigner'
 gem 'immigrant'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
-gem 'rails-i18n'
 gem 'paper_trail', '~> 2'
 
 group :development do

@@ -15,7 +15,7 @@
       <%= @pregunta.cuerpo.html_safe %>
     </div>
     <p class="meta">
-      Pregunta formulada por <a href="#">Rafael Vega</a> en Febrero 8 de 2013 a las 10:00pm.
+      Pregunta formulada por <%= link_to @pregunta.usuario.nombre, usuario_path(@pregunta.usuario) %> hace <%= distance_of_time_in_words @pregunta.updated_at, Time.now %>.
     </p>
       <% if current_usuario.id == @pregunta.usuario_id %>
         <p><a class="btn btn-small btn-editar-pregunta" href="<%= edit_pregunta_path(@pregunta) %>"><i class="icon-pencil"></i> Edite su pregunta.</a></p>
@@ -63,7 +63,7 @@
         <div class="user_input_html">
           <%= respuesta.cuerpo.html_safe %>
         </div>
-        <p class="meta">Respuesta ingresada por <a href="#">rafael vega</a> en febrero 8 de 2013 a las 10:00pm.</p>
+        <p class="meta">Respuesta ingresada por <%= link_to respuesta.usuario.nombre, usuario_path(respuesta.usuario) %> hace <%= distance_of_time_in_words respuesta.updated_at, Time.now %>.</p>
       </div>
       <% if current_usuario.id == respuesta.usuario_id %>
         <p><a class="respuesta-edit-btn btn btn-small" href="#"><i class="icon-pencil"></i> Edite su respuesta.</a></p>

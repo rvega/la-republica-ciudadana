@@ -1,4 +1,5 @@
 RepublicaCiudadana::Application.routes.draw do
+  resources :usuarios
   devise_scope :usuario do
     get 'usuarios/contrasena/recordar', :to=>'devise/passwords#new'
     get 'usuarios/contrasena/editar', :to=>'devise/passwords#edit'
