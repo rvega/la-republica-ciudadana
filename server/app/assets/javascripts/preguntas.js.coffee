@@ -99,7 +99,6 @@ $(document).ready ->
         $(ctnr + ' .menos').show()
       ,
       error: (xhr, status, error) ->
-        debugger
         template = """    
           <div class="alert alert-error">
           <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -109,6 +108,9 @@ $(document).ready ->
         msg = JSON.parse(xhr.responseText).usuario_id
         html = template.replace('{{msg}}', msg)
         $(ctnr).append html
+        setTimeout ->
+          $(ctnr+' .alert').alert('close')
+        , 3000
     )
 
   vote = (value, id, type) ->
@@ -142,6 +144,9 @@ $(document).ready ->
         msg = JSON.parse(xhr.responseText).usuario_id
         html = template.replace('{{msg}}', msg)
         $(ctnr).append html
+        setTimeout ->
+          $(ctnr+' .alert').alert('close')
+        , 3000
     )
 
   $('.votos .menos').click (event) ->
