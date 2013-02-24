@@ -1,4 +1,6 @@
 class Respuesta < ActiveRecord::Base
+  has_paper_trail
+
   include Mixins::Votable
 
   attr_accessible :cuerpo, :usuario_id, :pregunta_id

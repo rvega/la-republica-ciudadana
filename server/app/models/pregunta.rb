@@ -1,4 +1,6 @@
 class Pregunta < ActiveRecord::Base
+  has_paper_trail
+
   include Mixins::Votable
 
   attr_accessible :cuerpo, :topico, :etiquetas_list
