@@ -1,6 +1,36 @@
+<% 
+  if votable.ya_voto?(current_usuario.id)
+    hide_mas = 'hidden'
+    hide_menos = 'hidden'
+    hide_remover = ''
+  else
+    hide_mas = ''
+    hide_menos = ''
+    hide_remover = 'hidden'
+  end
+%>
+
 <div class="votos" id="votos_<%= votable.id %>" >
-  <a data-votable-id="<%= votable.id %>" data-votable-type="<%= votable.class.name %>" data-toggle="tooltip" title='Marque esta <%= votable.class.name.downcase %> como "interesante"' class="mas" href="#"><i class="icon-plus-sign"></i> </a>
-  <a data-votable-id="<%= votable.id %>" data-votable-type="<%= votable.class.name %>" data-toggle="tooltip" title='Marque esta <%= votable.class.name.downcase %> como "no interesante"' class="menos" href="#"><i class="icon-minus-sign"></i> </a>
+  <a data-votable-id="<%= votable.id %>" 
+    data-votable-type="<%= votable.class.name %>" 
+    data-toggle="tooltip" 
+    title='Marque esta <%= votable.class.name.downcase %> como "interesante"' 
+    class="mas <%= hide_mas %>" 
+    href="#"><i class="icon-plus-sign"></i> 
+  </a>
+  <a data-votable-id="<%= votable.id %>" 
+    data-votable-type="<%= votable.class.name %>" 
+    data-toggle="tooltip" 
+    title='Marque esta <%= votable.class.name.downcase %> como "no interesante"' 
+    class="menos <%= hide_menos %>" 
+    href="#"><i class="icon-minus-sign"></i> </a>
+  <a data-votable-id="<%= votable.id %>" 
+    data-votable-type="<%= votable.class.name %>" 
+    data-toggle="tooltip" 
+    title='Remueva su voto para esta <%= votable.class.name.downcase %>' 
+    class="remover <%= hide_remover %>"
+    href="#"><i class="icon-remove-sign"></i> </a>
+
   <div class="numeros">
     <span class="votos-total"><%= votable.votos_total %></span>
     <br><span class="votos-mas"><%= votable.votos_mas %></span> 

@@ -30,4 +30,26 @@ class VotosController < ApplicationController
       end
     end
   end
+
+  # DELETE /votos
+  # DELETE /votos.json
+  def destroy
+    @voto = Voto.where("usuario_id=? AND votable_id=?", current_usuario.id, params[:voto][:votable_id]).first
+    @voto.destroy
+
+    respond_to do |format|
+      if params[:voto][:votable_type]=='Pregunta'
+        votable = Pregunta.find(params[:voto][:votable_id])
+      else
+        votable = Respuesta.find(params[:voto][:votable_id])
+      end
+      resp = {
+        :votos_total => votable.votos_total,
+        :votos_menos => votable.votos_menos,
+        :votos_mas => votable.votos_mas
+      }
+      format.json { render json: resp, status: :ok }
+      format.html { redirect_to votos_url }
+    end
+  end
 end

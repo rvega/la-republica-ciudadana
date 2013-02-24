@@ -6,10 +6,8 @@ class Voto < ActiveRecord::Base
   belongs_to :votable, :polymorphic=>true
 
   validate :only_one_vote_per_user
-
   def only_one_vote_per_user
-    previous_votos = Voto.where("usuario_id=? AND votable_id=?", self.usuario_id, self.votable_id).count
-    if previous_votos > 0
+    if self.votable.ya_voto?(self.usuario_id)
       errors.add(:usuario_id, "Usted ya ha votado por esta #{self.votable_type.downcase}.")
     end
   end

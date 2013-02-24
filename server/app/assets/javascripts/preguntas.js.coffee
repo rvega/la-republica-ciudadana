@@ -78,6 +78,39 @@ $(document).ready ->
     false
 
   # VOTOS
+  delete_voto = (id, type) ->
+    ctnr = '#votos_'+id
+    $.ajax(
+      url: '/votos.json',
+      type: 'DELETE',
+      data:{
+        voto:{
+          votable_type: type,
+          votable_id: id,
+        }
+      },
+      success: (data, status, xhr) ->
+        $(ctnr + ' .votos-total').html(data.votos_total)
+        $(ctnr + ' .votos-mas').html(data.votos_mas)
+        $(ctnr + ' .votos-menos').html('-'+data.votos_menos)
+
+        $(ctnr + ' .remover').hide()
+        $(ctnr + ' .mas').show()
+        $(ctnr + ' .menos').show()
+      ,
+      error: (xhr, status, error) ->
+        debugger
+        template = """    
+          <div class="alert alert-error">
+          <a href="#" class="close" data-dismiss="alert">&times;</a>
+            {{msg}}
+          </div>
+        """
+        msg = JSON.parse(xhr.responseText).usuario_id
+        html = template.replace('{{msg}}', msg)
+        $(ctnr).append html
+    )
+
   vote = (value, id, type) ->
     ctnr = '#votos_'+id
     $.ajax(
@@ -89,11 +122,15 @@ $(document).ready ->
           votable_id: id,
           value: value
         }
-      }
+      },
       success: (data, status, xhr) ->
         $(ctnr + ' .votos-total').html(data.votos_total)
         $(ctnr + ' .votos-mas').html(data.votos_mas)
         $(ctnr + ' .votos-menos').html('-'+data.votos_menos)
+
+        $(ctnr + ' .remover').show()
+        $(ctnr + ' .mas').hide()
+        $(ctnr + ' .menos').hide()
       ,
       error: (xhr, status, error) ->
         template = """    
@@ -115,5 +152,10 @@ $(document).ready ->
   $('.votos .mas').click (event) ->
     element = $(event.target).parent('a')
     vote 1, element.attr('data-votable-id'), element.attr('data-votable-type')
+    false
+
+  $('.votos .remover').click (event) ->
+    element = $(event.target).parent('a')
+    delete_voto element.attr('data-votable-id'), element.attr('data-votable-type')
     false
 

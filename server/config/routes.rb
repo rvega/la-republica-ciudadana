@@ -17,6 +17,7 @@ RepublicaCiudadana::Application.routes.draw do
   resources :respuestas
   resources :comentarios
   resources :votos
+  match "/votos" => "votos#destroy", :via=>:delete
   root :to => 'preguntas#index'
 
   # The priority is based upon order of creation:
