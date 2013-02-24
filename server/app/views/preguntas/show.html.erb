@@ -18,7 +18,7 @@
       Pregunta formulada por <a href="#">Rafael Vega</a> en Febrero 8 de 2013 a las 10:00pm.
     </p>
       <% if current_usuario.id == @pregunta.usuario_id %>
-        <p><a class="btn btn-small" href="<%= edit_pregunta_path(@pregunta) %>"><i class="icon-pencil"></i> Edite su pregunta.</a></p>
+        <p><a class="btn btn-small btn-editar-pregunta" href="<%= edit_pregunta_path(@pregunta) %>"><i class="icon-pencil"></i> Edite su pregunta.</a></p>
       <% end %>
     <p class="tags">
       <% @pregunta.etiquetas.each do |e| %>
@@ -31,12 +31,13 @@
   <!-- ====================== -->
   <div id="comentarios">
     <hr>
-    <%= render 'preguntas/comentarios', :comentarios=>@pregunta.comentarios %>
+    <%= render 'preguntas/comentarios', :comentable=>@pregunta %>
 
     <!-- ================= -->
     <!--  FORM COMENTARIO  -->
     <!-- ================= -->
-    <%= render 'preguntas/form_comentario', :comentario=>@comentario, :comentable=>@pregunta, :comentable_type=>'Pregunta', :pregunta_id=>@pregunta.id %>
+    <a id="agregar-comentario-pregunta" href="#" class="btn btn-mini agregar-comentario" data-form="form-comentario-pregunta-new">Publique un comentario</a>
+    <%= render 'preguntas/form_comentario', :comentable=>@pregunta, :comentario=>@comentario, :is_new=>true %>
   </div>
 
   <!-- ============ -->
@@ -77,12 +78,13 @@
     <!-- ====================== -->
     <div id="comentarios">
       <hr>
-      <%= render 'preguntas/comentarios', :comentarios=>respuesta.comentarios %>
+      <%= render 'preguntas/comentarios', :comentable=>respuesta %>
 
       <!-- ================= -->
       <!--  FORM COMENTARIO  -->
       <!-- ================= -->
-      <%= render 'preguntas/form_comentario', :comentario=>@comentario, :comentable=>respuesta, :comentable_type=>'Respuesta', :pregunta_id=>@pregunta.id %>
+      <a id="agregar-comentario-respuesta" href="#" class="btn btn-mini agregar-comentario" data-form="form-comentario-respuesta-new">Publique un comentario</a>
+      <%= render 'preguntas/form_comentario', :comentario=>@comentario, :comentable=>respuesta, :is_new=>true %>
 
     </div>
     <hr>

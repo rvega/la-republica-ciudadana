@@ -1,16 +1,19 @@
 <% 
-  if comentable_type == 'Pregunta'
-    is_for = 'pregunta'
+  if is_new
+    is_for = comentable.class.name.downcase + '-new'
+    verb = 'Publique'
+    url = comentarios_path(comentario, :anchor=>"form-comentario-#{is_for}")
   else
-    is_for = comentable.id
+    is_for = comentario.id.to_s
+    verb = 'Edite'
+    url = comentario_path(comentario, :anchor=>"form-comentario-#{is_for}")
   end
 %>
 
-<a id="agregar-comentario-<%= is_for %>" href="#" class="btn btn-mini agregar-comentario" data-form="form-comentario-<%= is_for %>">Publique un comentario</a>
-<%= form_for(comentario, :url=>comentarios_path(comentario, :anchor=>"form-comentario-#{is_for}"), :html=>{:class=>'hidden nuevo-comentario', :id=>"form-comentario-#{is_for}"}) do |f| %>
-  <%= f.hidden_field :pregunta_id, :value=>pregunta_id %>
+<%= form_for(comentario, :url=>url, :html=>{:class=>'hidden nuevo-comentario', :id=>"form-comentario-#{is_for}"}) do |f| %>
+  <%= f.hidden_field :pregunta_id, :value=>@pregunta.id %>
   <%= f.hidden_field :comentable_id, :value=>comentable.id %>
-  <%= f.hidden_field :comentable_type, :value=>comentable_type %>
+  <%= f.hidden_field :comentable_type, :value=>comentable.class.name %>
 
   <% if comentario.errors.any? %>
     <div class="alert alert-error">
@@ -25,5 +28,5 @@
   <% end %>
 
   <%= f.text_area :cuerpo, {:cols=>"", :rows=>"4"}  %>
-  <%= f.submit raw("Publique su comentario"), :class=>"btn btn-primary btn-small" %>
+  <%= f.submit raw("#{verb} su comentario"), :class=>"btn btn-primary btn-small" %>
 <% end %>

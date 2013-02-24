@@ -1,9 +1,25 @@
-<% comentarios.each do |comentario| %>
-  <div id="comentario_<%= comentario.id %>" class="comentario">
+<% comentable.comentarios.each do |comentario| %>
+  <% 
+    #Is this the one we're editing? 
+    if (@editing_comentario and @comentario.id==comentario.id)
+      cmt = @comentario
+      hide_cuerpo=true
+    else
+      cmt = comentario
+      hide_cuerpo=false
+    end
+  %>
+  <div id="comentario-<%= comentario.id %>" class="comentario">
     <i class="icon-comment"></i>
     <p class="cuerpo-comentario">
-      <%= comentario.cuerpo %>
-       – <i><a href="#">Rafael Vega</a> Feb 8 2013 a las 3:00pm</i>
+      <% unless hide_cuerpo %>
+        <%= comentario.cuerpo %>
+        – <i><a href="#">Rafael Vega</a> Feb 8 2013 a las 3:00pm</i>     
+        <a class="btn-editar-comentario" data-form="form-comentario-<%= comentario.id %>" data-toggle="tooltip" title="Edite su comentario" href="#"><i class="icon-pencil"></i> </a>
+      <% end %>
     </p>
+    <% if current_usuario.id == comentario.usuario_id %>
+      <%= render 'preguntas/form_comentario', :comentable=>comentable, :comentario=>cmt, :is_new=>false %>
+    <% end %>
   </div>
 <% end %>

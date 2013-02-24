@@ -5,48 +5,55 @@
 $(document).ready ->
   hash=window.location.hash
 
+  hideButtons = ->
+    $('.agregar-comentario').hide()
+    $('.btn-editar-comentario').hide()
+    $('.btn-editar-pregunta').hide()
+    $('.respuesta-edit-btn').hide()
+
+
   # Abrir form comentario si se necesita
   unless hash.indexOf('form-comentario')==-1
     partialId =  hash.substring( hash.indexOf('-') )
     idBtn = "agregar#{partialId}"
     idForm = "form#{partialId}"
-    $('#'+idBtn).hide()
     $('#'+idForm).show()
     
     # Si vamos a mostrar el form, es porque hay errores de validación, 
     # evite que se muestren otros forms al mismo tiempo:
-    $('.agregar-comentario').hide()
+    hideButtons()
 
   # Formularios comentarios
-  $('.agregar-comentario').click (event) ->
-    $('.agregar-comentario').hide()
+  $('.btn-editar-comentario, .agregar-comentario').click (event) ->
+    hideButtons()
     btn = $(event.target)
+    btn = btn.parent('a') if btn.get(0).tagName!='A'
     form = $('#'+btn.attr('data-form'))
     form.show()
+  
+    if btn.hasClass('btn-editar-comentario')
+      cuerpo = btn.parents('p.cuerpo-comentario').hide()
+
     false
 
   # Abrir form respuesta si se necesita
   unless hash.indexOf('edit_respuesta')==-1
     partialId =  hash.substring( hash.indexOf('_') + 1 )
-    debugger
     idCuerpo = '#' + partialId + " .hideme"
     idBtn = '#' + partialId + " .respuesta-edit-btn"
     idForm = '#' + partialId + " .respuesta-edit-form"
-    $(idBtn).hide()
+    hideButtons()
     $(idCuerpo).hide()
     $(idForm).show()
     
-    # Si vamos a mostrar el form, es porque hay errores de validación, 
-    # evite que se muestren otros forms al mismo tiempo:
-    $('.agregar-comentario').hide()
     
   # Formularios respuestas
   $('.respuesta-edit-btn').click (event) ->
     btn = $(event.target)
     id = btn.parents('.indent-1').attr('id')
     $('#'+id+' .hideme').hide()
-    btn.hide()
     $('#'+id+' .respuesta-edit-form').show()
+    hideButtons()
     false
     
   
