@@ -6,10 +6,19 @@ class Respuesta < ActiveRecord::Base
   attr_accessible :cuerpo, :usuario_id, :pregunta_id
 
   validates :cuerpo, :length => { :in => 15..30000 }
-  # TODO: validate user enters only one answer to a question, do this after implementing edit pregunta
+
+  validate :only_one_respuesta_per_pregunta
+  def only_one_respuesta_per_pregunta
+    r = Respuesta.where("pregunta_id=? AND usuario_id=?", self.pregunta_id, self.usuario_id).count
+    if r>0
+      errors.add(:usuario_id, "Usted ya ha ingresado una respuesta para esta pregunta.")
+    end
+  end
 
   has_many :comentarios, :as=>:comentable
   has_many :votos, :as=>:votable
+  belongs_to :usuario
+  belongs_to :pregunta
 
   include Mixins::HtmlCleaner
   before_validation do |respuesta|
