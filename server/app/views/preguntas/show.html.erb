@@ -17,7 +17,7 @@
     <p class="meta">
       Pregunta formulada por <%= link_to @pregunta.usuario.nombre, usuario_path(@pregunta.usuario) %> hace <%= distance_of_time_in_words @pregunta.updated_at, Time.now %>.
     </p>
-      <% if current_usuario.id == @pregunta.usuario_id %>
+      <% if usuario_signed_in? and current_usuario.id == @pregunta.usuario_id %>
         <p><a class="btn btn-small btn-editar-pregunta" href="<%= edit_pregunta_path(@pregunta) %>"><i class="icon-pencil"></i> Edite su pregunta.</a></p>
       <% end %>
     <p class="tags">
@@ -30,14 +30,15 @@
   <!--  COMENTARIOS PREGUNTA  -->
   <!-- ====================== -->
   <div id="comentarios">
-    <hr>
     <%= render 'preguntas/comentarios', :comentable=>@pregunta %>
 
     <!-- ================= -->
     <!--  FORM COMENTARIO  -->
     <!-- ================= -->
-    <a id="agregar-comentario-pregunta" href="#" class="btn btn-mini agregar-comentario" data-form="form-comentario-pregunta-new">Publique un comentario</a>
-    <%= render 'preguntas/form_comentario', :comentable=>@pregunta, :comentario=>@comentario, :is_new=>true %>
+    <% if  usuario_signed_in? %>
+      <a id="agregar-comentario-pregunta" href="#" class="btn btn-mini agregar-comentario" data-form="form-comentario-pregunta-new">Publique un comentario</a>
+      <%= render 'preguntas/form_comentario', :comentable=>@pregunta, :comentario=>@comentario, :is_new=>true %>
+    <% end %>
   </div>
 
   <!-- ============ -->
@@ -65,7 +66,7 @@
         </div>
         <p class="meta">Respuesta ingresada por <%= link_to respuesta.usuario.nombre, usuario_path(respuesta.usuario) %> hace <%= distance_of_time_in_words respuesta.updated_at, Time.now %>.</p>
       </div>
-      <% if current_usuario.id == respuesta.usuario_id %>
+      <% if usuario_signed_in? and current_usuario.id == respuesta.usuario_id %>
         <p><a class="respuesta-edit-btn btn btn-small" href="#"><i class="icon-pencil"></i> Edite su respuesta.</a></p>
         <div class="respuesta-edit-form hidden">
           <%= render 'preguntas/form_respuesta', :respuesta=>@editing_respuesta ? @respuesta : respuesta, :is_new=>false %>
@@ -77,14 +78,15 @@
     <!--  COMENTARIOS RESPUESTA  -->
     <!-- ====================== -->
     <div id="comentarios">
-      <hr>
       <%= render 'preguntas/comentarios', :comentable=>respuesta %>
 
       <!-- ================= -->
       <!--  FORM COMENTARIO  -->
       <!-- ================= -->
-      <a id="agregar-comentario-respuesta" href="#" class="btn btn-mini agregar-comentario" data-form="form-comentario-respuesta-new">Publique un comentario</a>
-      <%= render 'preguntas/form_comentario', :comentario=>@comentario, :comentable=>respuesta, :is_new=>true %>
+      <% if  usuario_signed_in? %>
+        <a id="agregar-comentario-respuesta" href="#" class="btn btn-mini agregar-comentario" data-form="form-comentario-respuesta-new">Publique un comentario</a>
+        <%= render 'preguntas/form_comentario', :comentario=>@comentario, :comentable=>respuesta, :is_new=>true %>
+      <% end %>
 
     </div>
     <hr>
@@ -93,10 +95,12 @@
   <!-- ====================== -->
   <!--  FORM NUEVA RESPUESTA  -->
   <!-- ====================== -->
-  <% unless @pregunta.usuario_already_answered(current_usuario) %>
+  <% if usuario_signed_in? and not @pregunta.usuario_already_answered(current_usuario) %>
     <div id="nueva-respuesta">
       <h3>Su Respuesta</h3>
       <%= render 'preguntas/form_respuesta', :respuesta=>@respuesta, :is_new=>true %>
     </div>
+  <% elsif not usuario_signed_in? %>
+    <a class="btn btn-primary" href="<%= new_usuario_session_path %>">Ingrese para publicar una respuesta &raquo;</a>
   <% end %>
 </div>

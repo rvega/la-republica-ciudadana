@@ -172,12 +172,13 @@
     }
     .votos{
       .alert{
-        position: relative;
+        position: absolute;
         top: 0px;
         left: -1px;
         width: 65px;
         font-size: 12px;
         padding: 1px 6px;
+        z-index:10000;
         .close{
           right:-4px;
         }

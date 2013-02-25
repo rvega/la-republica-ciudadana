@@ -1,4 +1,6 @@
 class PreguntasController < ApplicationController
+  load_and_authorize_resource
+
   public
 
   # GET /preguntas
@@ -69,7 +71,7 @@ class PreguntasController < ApplicationController
 
     respond_to do |format|
       if @pregunta.save
-        format.html { redirect_to @pregunta, notice: 'Pregunta was successfully created.' }
+        format.html { redirect_to @pregunta }
         format.json { render json: @pregunta, status: :created, location: @pregunta }
       else
         format.html { render action: "new" }
@@ -85,7 +87,7 @@ class PreguntasController < ApplicationController
 
     respond_to do |format|
       if @pregunta.update_attributes(params[:pregunta])
-        format.html { redirect_to @pregunta, notice: 'Pregunta was successfully updated.' }
+        format.html { redirect_to @pregunta }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -93,16 +95,4 @@ class PreguntasController < ApplicationController
       end
     end
   end
-
-  # DELETE /preguntas/1
-  # DELETE /preguntas/1.json
-  # def destroy
-  #   @pregunta = Pregunta.find(params[:id])
-  #   @pregunta.destroy
-
-  #   respond_to do |format|
-  #     format.html { redirect_to preguntas_url }
-  #     format.json { head :no_content }
-  #   end
-  # end
 end

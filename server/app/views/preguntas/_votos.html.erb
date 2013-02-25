@@ -1,5 +1,5 @@
 <% 
-  if votable.ya_voto?(current_usuario.id)
+  if usuario_signed_in? and votable.ya_voto?(current_usuario.id)
     hide_mas = 'hidden'
     hide_menos = 'hidden'
     hide_remover = ''

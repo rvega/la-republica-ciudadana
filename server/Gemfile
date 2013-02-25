@@ -6,6 +6,7 @@ gem 'jquery-rails'
 
 # Auth
 gem 'devise'
+gem 'cancan'
 
 # Clean html input
 gem 'sanitize'

@@ -1,4 +1,6 @@
 class RespuestasController < ApplicationController
+  load_and_authorize_resource 
+
   # POST /respuestas
   # POST /respuestas.json
   def create
@@ -8,8 +10,7 @@ class RespuestasController < ApplicationController
     respond_to do |format|
       if @respuesta.save
         format.html do 
-          redirect_to pregunta_url(@respuesta.pregunta_id, :anchor => "respuesta_#{@respuesta.id}"),
-            notice: 'Respuesta was successfully created.'
+          redirect_to pregunta_url(@respuesta.pregunta_id, :anchor => "respuesta_#{@respuesta.id}")
         end
         format.json { render json: @respuesta, status: :created, location: @respuesta }
       else
@@ -31,7 +32,7 @@ class RespuestasController < ApplicationController
     respond_to do |format|
       if @respuesta.update_attributes(params[:respuesta])
         format.html do 
-          redirect_to pregunta_url(@respuesta.pregunta_id, :anchor => "respuesta_#{@respuesta.id}"), notice: 'Respuesta was successfully created.'
+          redirect_to pregunta_url(@respuesta.pregunta_id, :anchor => "respuesta_#{@respuesta.id}")
         end
         format.json { head :no_content }
       else

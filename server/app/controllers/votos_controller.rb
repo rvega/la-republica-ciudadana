@@ -1,4 +1,6 @@
 class VotosController < ApplicationController
+  load_and_authorize_resource
+
   # POST /votos
   # POST /votos.json
   def create

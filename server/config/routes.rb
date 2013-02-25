@@ -2,16 +2,22 @@ RepublicaCiudadana::Application.routes.draw do
   devise_scope :usuario do
     get 'usuarios/contrasena/recordar', :to=>'devise/passwords#new'
     get 'usuarios/contrasena/editar', :to=>'devise/passwords#edit'
-    get 'usuarios/registrar', :to=>'devise/registrations#new'
-    get 'usuarios/registro/editar', :to=>'devise/registrations#edit'
-    get 'usuarios/salir', :to=>'devise/sessions#destroy'
+    get 'usuarios/registrar', :to=>'registrations#new'
+    get 'usuarios/registro/editar', :to=>'registrations#edit'
+    get 'usuarios/salir', :to=>'sessions#destroy'
   end
-  devise_for :usuarios, :path_names => {
-    :sign_in => 'ingreso', 
-    :sign_out => 'salida', 
-    :password => 'contrasena', 
-    :registration => 'registro'
-  }
+  devise_for :usuarios, 
+    :controllers => {
+      :sessions => 'sessions',
+      :registrations => 'registrations'
+    },
+    :path_names => {
+      :sign_in => 'ingreso', 
+      :sign_out => 'salida', 
+      :password => 'contrasena', 
+      :registration => 'registro'
+    }
+
   resources :usuarios
   resources :preguntas, :path_names => { :new => 'nueva', :edit => 'editar' }
   resources :respuestas

@@ -1,3 +1,6 @@
+<% unless comentable.comentarios.empty? %>
+  <hr>
+<% end %>
 <% comentable.comentarios.each do |comentario| %>
   <% 
     #Is this the one we're editing? 
@@ -15,12 +18,12 @@
       <% unless hide_cuerpo %>
         <%= comentario.cuerpo %>
         – <i><%= link_to comentario.usuario.nombre, usuario_path(comentario.usuario) %> hace <%= distance_of_time_in_words comentario.updated_at, Time.now %></i>     
-        <% if current_usuario.id == comentario.usuario_id %>
+        <% if usuario_signed_in? and current_usuario.id == comentario.usuario_id %>
           <a class="btn-editar-comentario" data-form="form-comentario-<%= comentario.id %>" data-toggle="tooltip" title="Edite su comentario" href="#"><i class="icon-pencil"></i> </a>
         <% end %>
       <% end %>
     </p>
-    <% if current_usuario.id == comentario.usuario_id %>
+    <% if usuario_signed_in? and current_usuario.id == comentario.usuario_id %>
       <%= render 'preguntas/form_comentario', :comentable=>comentable, :comentario=>cmt, :is_new=>false %>
     <% end %>
   </div>

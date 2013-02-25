@@ -10,7 +10,7 @@
   <% if usuario_signed_in? %>
     <p><%= link_to raw("Formule una pregunta &raquo;"), new_pregunta_path, :class => "btn btn-primary"%></p>
   <% else %>
-    <p><%= link_to raw("Ingrese para participar &raquo;"), new_pregunta_path, :class => "btn btn-primary"%></p>
+    <p><%= link_to raw("Ingrese para participar &raquo;"), new_usuario_session_path, :class => "btn btn-primary"%></p>
   <% end %>
 </div>
 

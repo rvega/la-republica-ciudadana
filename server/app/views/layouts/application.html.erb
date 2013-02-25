@@ -10,7 +10,21 @@
 
   <%= render "shared/header" %>
 
+
   <div id="main-container" class="container-fluid">
+    <% if flash[:alert] %>
+      <div class="alert alert-error">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </div>
 

@@ -9,6 +9,13 @@ class Voto < ActiveRecord::Base
       errors.add(:usuario_id, "No es posible votar por su propia #{self.votable_type.downcase}")
     end
   end
+  
+  validate :no_voting_for_self
+  def no_voting_for_self
+    if self.votable.usuario_id == self.usuario_id
+      errors.add(:usuario_id, "No es posible votar por su propia #{self.votable_type.downcase}")
+    end
+  end
 
   validate :only_one_vote_per_user
   def only_one_vote_per_user

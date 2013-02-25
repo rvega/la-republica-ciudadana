@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130224222137) do
+ActiveRecord::Schema.define(:version => 20130225210633) do
 
   create_table "comentarios", :force => true do |t|
     t.integer  "usuario_id"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20130224222137) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "rol"
   end
 
   add_index "usuarios", ["email"], :name => "index_usuarios_on_email", :unique => true

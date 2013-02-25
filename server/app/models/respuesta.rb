@@ -7,7 +7,7 @@ class Respuesta < ActiveRecord::Base
 
   validates :cuerpo, :length => { :in => 15..30000 }
 
-  validate :only_one_respuesta_per_pregunta
+  validate :only_one_respuesta_per_pregunta, :on=>:create
   def only_one_respuesta_per_pregunta
     r = Respuesta.where("pregunta_id=? AND usuario_id=?", self.pregunta_id, self.usuario_id).count
     if r>0
