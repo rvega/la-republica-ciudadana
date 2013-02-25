@@ -1,5 +1,4 @@
 RepublicaCiudadana::Application.routes.draw do
-  resources :usuarios
   devise_scope :usuario do
     get 'usuarios/contrasena/recordar', :to=>'devise/passwords#new'
     get 'usuarios/contrasena/editar', :to=>'devise/passwords#edit'
@@ -13,7 +12,7 @@ RepublicaCiudadana::Application.routes.draw do
     :password => 'contrasena', 
     :registration => 'registro'
   }
-
+  resources :usuarios
   resources :preguntas, :path_names => { :new => 'nueva', :edit => 'editar' }
   resources :respuestas
   resources :comentarios

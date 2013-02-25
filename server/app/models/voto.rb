@@ -16,4 +16,16 @@ class Voto < ActiveRecord::Base
       errors.add(:usuario_id, "Usted ya ha votado por esta #{self.votable_type.downcase}")
     end
   end
+
+  after_create :update_score
+  def update_score
+    if self.votable_type=='Pregunta'
+      p = Pregunta.find self.votable_id 
+    else
+      r = Respuesta.find self.votable_id 
+      p = Pregunta.find r.pregunta_id 
+    end
+    p.calculate_score
+  end
+
 end

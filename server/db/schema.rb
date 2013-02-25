@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130224134137) do
+ActiveRecord::Schema.define(:version => 20130224222137) do
 
   create_table "comentarios", :force => true do |t|
     t.integer  "usuario_id"
@@ -23,21 +23,31 @@ ActiveRecord::Schema.define(:version => 20130224134137) do
   end
 
   create_table "etiquetas", :force => true do |t|
-    t.integer  "pregunta_id"
     t.string   "etiqueta"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "etiquetas", ["etiqueta"], :name => "index_etiquetas_on_etiqueta", :unique => true
+
+  create_table "etiquetas_preguntas", :id => false, :force => true do |t|
+    t.integer "etiqueta_id", :null => false
+    t.integer "pregunta_id", :null => false
+  end
+
+  add_index "etiquetas_preguntas", ["etiqueta_id", "pregunta_id"], :name => "index_etiquetas_preguntas_on_etiqueta_id_and_pregunta_id", :unique => true
 
   create_table "preguntas", :force => true do |t|
     t.integer  "usuario_id"
     t.string   "topico"
     t.string   "cuerpo"
+    t.integer  "score"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "preguntas", ["cuerpo"], :name => "index_preguntas_on_cuerpo"
+  add_index "preguntas", ["topico"], :name => "index_preguntas_on_topico"
 
   create_table "respuestas", :force => true do |t|
     t.string   "cuerpo"

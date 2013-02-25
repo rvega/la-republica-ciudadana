@@ -79,7 +79,7 @@ $(document).ready ->
 
   # VOTOS
   delete_voto = (id, type) ->
-    ctnr = '#votos_'+id
+    ctnr = '#votos-'+ type.toLowerCase() + '-' + id
     $.ajax(
       url: '/votos.json',
       type: 'DELETE',
@@ -90,6 +90,7 @@ $(document).ready ->
         }
       },
       success: (data, status, xhr) ->
+        debugger
         $(ctnr + ' .votos-total').html(data.votos_total)
         $(ctnr + ' .votos-mas').html(data.votos_mas)
         $(ctnr + ' .votos-menos').html('-'+data.votos_menos)
@@ -114,7 +115,8 @@ $(document).ready ->
     )
 
   vote = (value, id, type) ->
-    ctnr = '#votos_'+id
+    ctnr = '#votos-'+ type.toLowerCase() + '-' + id
+    debugger
     $.ajax(
       url: '/votos.json',
       type: 'POST',

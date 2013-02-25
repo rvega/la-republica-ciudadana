@@ -22,7 +22,7 @@
       <% end %>
     <p class="tags">
       <% @pregunta.etiquetas.each do |e| %>
-        <span data-toggle="tooltip" title="Esta pregunta ha sido etiquetada <%= e.etiqueta %>." class="label"><a href="#"><%= e.etiqueta %></a></span>
+        <span data-toggle="tooltip" title="Esta pregunta ha sido etiquetada <%= e.etiqueta %>." class="label"><a href="/?busqueda=<%= e.etiqueta %>"><%= e.etiqueta %></a></span>
       <% end %>
   </div>
 

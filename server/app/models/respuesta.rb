@@ -24,5 +24,11 @@ class Respuesta < ActiveRecord::Base
   before_validation do |respuesta|
     respuesta.cuerpo = clean(respuesta.cuerpo)     
   end
+
+  after_create :update_score
+  def update_score
+    p = Pregunta.find self.pregunta_id 
+    p.calculate_score
+  end
 end
 

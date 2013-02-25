@@ -3,8 +3,8 @@
 <!--====================-->
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
-    <form class="navbar-search pull-right">
-      <input type="text" class="search-query" placeholder="Busque">
+    <form class="navbar-search pull-right" action="<%= request.path %>" method="get">
+      <input type="text" class="search-query" placeholder="Busque" name="busqueda" value="<%= params[:busqueda] %>">
     </form>
     <ul class="nav pull-right">
       <% unless @is_home %>

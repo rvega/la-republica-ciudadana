@@ -6,7 +6,7 @@ class Pregunta < ActiveRecord::Base
   attr_accessible :cuerpo, :topico, :etiquetas_list
 
   belongs_to :usuario
-  has_many :etiquetas
+  has_and_belongs_to_many :etiquetas, :uniq=>true
   has_many :votos, :as=>:votable
   has_many :respuestas
   has_many :comentarios, :as=>:comentable
@@ -20,6 +20,22 @@ class Pregunta < ActiveRecord::Base
     pregunta.cuerpo = clean(pregunta.cuerpo)     
   end
 
+  def calculate_score
+    comments = self.comentarios.count
+    respuestas = self.respuestas.count
+    votos = self.votos.count
+
+    comments_respuestas = 0
+    votos_respuestas = 0
+    self.respuestas.each do |r| 
+      comments_respuestas + r.comentarios.count
+      votos_respuestas + r.votos.count
+    end
+
+    self.score = (comments+comments_respuestas)*3 + respuestas*5 + (votos+votos_respuestas)*1
+    self.save
+  end
+
   def etiquetas_list=(new_value)
     etiquetas_names = new_value.split(',')
     self.etiquetas = etiquetas_names.map do |name| 
@@ -28,7 +44,8 @@ class Pregunta < ActiveRecord::Base
   end
 
   def etiquetas_list
-    self.etiquetas.map {|e| e.etiqueta}.join(',')
+    e = self.etiquetas.map {|etiqueta| etiqueta.etiqueta }
+    e.join(',')
   end
 
   def comentarios_count

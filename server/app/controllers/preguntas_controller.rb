@@ -6,9 +6,25 @@ class PreguntasController < ApplicationController
   def index
     @is_home = true
 
-    @preguntas = Pregunta.includes(:etiquetas)
-      .paginate(:page => params[:pagina], :per_page=>20)
-      .order('created_at DESC')
+    s = params[:orden]
+    if s=='mas'
+      s = 'score ASC'
+    elsif s=='menos'
+      s = 'score DESC'
+    end
+
+    b = params[:busqueda]
+    if b.nil? or b.strip.empty?
+      @preguntas = Pregunta.includes(:etiquetas)
+        .paginate(:page => params[:pagina], :per_page=>20)
+        .order(s)
+    else
+      @preguntas = Pregunta.joins(:etiquetas)
+        .where("etiquetas.etiqueta=? OR preguntas.topico LIKE ? OR preguntas.cuerpo LIKE ?", b, "%#{b}%", "%#{b}%") 
+        .uniq
+        .paginate(:page => params[:pagina], :per_page=>20)
+        .order('created_at DESC')
+    end
 
     respond_to do |format|
       format.html # index.html.erb

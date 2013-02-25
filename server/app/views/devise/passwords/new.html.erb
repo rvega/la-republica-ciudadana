@@ -7,7 +7,7 @@
     <%= f.email_field :email, :autofocus => true, :placeholder=>'Email' %>
   </p>
 
-  <p><%= f.submit raw("Restablesca mi contraseña &raquo;"), :class=>"btn btn-primary"  %></p>
+  <p><%= f.submit raw("Restablesca mi contraseña &raquo;"), :class=>"btn btn-primary", :disable_with=>"Enviando..."  %></p>
 
   <%= render "devise/shared/links" %>
 <% end %>

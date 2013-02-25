@@ -13,7 +13,7 @@ module Mixins
     end
 
     def ya_voto?(usuario_id)
-      previous_votos = Voto.where("usuario_id=? AND votable_id=?", usuario_id, self.id).count
+      previous_votos = Voto.where("usuario_id=? AND votable_id=? AND votable_type=?", usuario_id, self.id, self.class.name).count
       previous_votos > 0
     end
   end

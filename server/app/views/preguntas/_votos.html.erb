@@ -10,7 +10,7 @@
   end
 %>
 
-<div class="votos" id="votos_<%= votable.id %>" >
+<div class="votos" id="votos-<%= "#{votable.class.name.downcase}-#{votable.id}" %>" >
   <a data-votable-id="<%= votable.id %>" 
     data-votable-type="<%= votable.class.name %>" 
     data-toggle="tooltip" 

@@ -30,7 +30,7 @@
   <% end -%>
 
   <p>
-    <%= f.submit raw('Ingrese &raquo;'), :class=>'btn btn-primary' %>
+    <%= f.submit raw('Ingrese &raquo;'), :class=>'btn btn-primary', :disable_with=>"Enviando..." %>
   </p>
   <p id="links">
     <%= render "devise/shared/links" %>

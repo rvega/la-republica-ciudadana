@@ -14,37 +14,46 @@
 <!--TABS PREGUNTAS-->
 <!--==============-->
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#">Todas las preguntas.</a></li>
-  <li><a href="#">Preguntas con menos participación.</a></li>
-  <li><a href="#">Preguntas con mas participación.</a></li>
+  <% unless params[:busqueda] %>
+    <li <%= raw('class="active"') if params[:orden].nil? %>><a href="/">Todas las preguntas.</a></li>
+    <li <%= raw('class="active"') if params[:orden]=='mas' %>><a href="?orden=mas">Preguntas con menos participación.</a></li>
+    <li <%= raw('class="active"') if params[:orden]=='menos' %>><a href="?orden=menos">Preguntas con mas participación.</a></li>
+  <% else %>
+    <li class="active"><a href="#">Resultados de su búsqueda.</a></li>
+    <li><a href="/">Todas las preguntas.</a></li>
+  <% end %>
 </ul>
 
 <!--===============-->
 <!--LISTA PREGUNTAS-->
 <!--===============-->
-<ul id="preguntas-lista">
-  <% @preguntas.each do |pregunta| %>
-    <li>
-      <div class="num-respuestas" data-toggle="tooltip" title="Esta pregunta tiene <%= pluralize(pregunta.respuestas_count, 'respuesta')%>.">
-        <%= pregunta.respuestas_count %><i class="icon-ok"></i>
-      </div>
-      <div class="num-comentarios" data-toggle="tooltip" title="Esta pregunta tiene <%= pluralize(pregunta.comentarios_count, 'comentario')%>.">
-        <%= pregunta.comentarios_count %><i class="icon-comment"></i>
-      </div>
-      <h3>
-        <a href="<%= pregunta_path(pregunta) %>"><span class="muted">
-          ¿Qué puedo hacer como ciudadano colombiano para</span> <%= pregunta.topico %>
-          <span class="muted">?</span>
-        </span></a>
-      </h3>
-      <p class="tags">
-        <% pregunta.etiquetas.each do |e| %>
-          <span data-toggle="tooltip" title="Esta pregunta ha sido etiquetada <%= e.etiqueta %>." class="label"><a href="#"><%= e.etiqueta %></a></span>
-        <% end %>
-      <hr>
-    </li>
+  <% if @preguntas.empty? %>
+    <h4 style="text-align:center">No se encontraron resultados para su búsqueda. Intentelo de nuevo.</h4>
+  <% else %>
+    <ul id="preguntas-lista">
+      <% @preguntas.each do |pregunta| %>
+        <li>
+          <div class="num-respuestas" data-toggle="tooltip" title="Esta pregunta tiene <%= pluralize(pregunta.respuestas_count, 'respuesta')%>.">
+            <%= pregunta.respuestas_count %><i class="icon-ok"></i>
+          </div>
+          <div class="num-comentarios" data-toggle="tooltip" title="Esta pregunta tiene <%= pluralize(pregunta.comentarios_count, 'comentario')%>.">
+            <%= pregunta.comentarios_count %><i class="icon-comment"></i>
+          </div>
+          <h3>
+            <a href="<%= pregunta_path(pregunta) %>"><span class="muted">
+                ¿Qué puedo hacer como ciudadano colombiano para</span> <%= pregunta.topico %>
+              <span class="muted">?</span>
+          </span></a>
+        </h3>
+        <p class="tags">
+          <% pregunta.etiquetas.each do |e| %>
+            <span data-toggle="tooltip" title="Esta pregunta ha sido etiquetada <%= e.etiqueta %>." class="label"><a href="/?busqueda=<%= e.etiqueta %>"><%= e.etiqueta %></a></span>
+          <% end %>
+          <hr>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
-</ul>
 
 <!--================-->
 <!--LINKS PAGINACION-->

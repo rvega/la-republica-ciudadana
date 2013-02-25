@@ -1,6 +1,6 @@
 class Etiqueta < ActiveRecord::Base
   attr_accessible :etiqueta
-  belongs_to :pregunta
+  has_and_belongs_to_many :pregunta, :uniq=>true
 
   validates :etiqueta, :uniqueness=>true
 end
