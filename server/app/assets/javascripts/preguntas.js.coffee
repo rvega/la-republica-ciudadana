@@ -90,7 +90,6 @@ $(document).ready ->
         }
       },
       success: (data, status, xhr) ->
-        debugger
         $(ctnr + ' .votos-total').html(data.votos_total)
         $(ctnr + ' .votos-mas').html(data.votos_mas)
         $(ctnr + ' .votos-menos').html('-'+data.votos_menos)
@@ -116,7 +115,6 @@ $(document).ready ->
 
   vote = (value, id, type) ->
     ctnr = '#votos-'+ type.toLowerCase() + '-' + id
-    debugger
     $.ajax(
       url: '/votos.json',
       type: 'POST',
