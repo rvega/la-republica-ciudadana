@@ -1,15 +1,31 @@
 source 'https://rubygems.org'
 
+# Core stuff
 gem 'rails', '3.2.11'
 gem 'jquery-rails'
+
+# Auth
 gem 'devise'
+
+# Clean html input
 gem 'sanitize'
+
+# wysiwyg
 gem 'bootstrap-wysihtml5-rails'
+
+# Foreign keys in db
 gem 'foreigner'
 gem 'immigrant'
+
+# Pagination
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+
+# Save old versions of records in db
 gem 'paper_trail', '~> 2'
+
+# Serve static pages
+gem 'high_voltage'
 
 group :development do
   gem 'debugger'
@@ -26,10 +42,6 @@ group :assets do
 end
 
 
-# Deploy with Capistrano
 # gem 'capistrano'
-#
-# To use debugger
 # gem 'omniauth'
-
 # gem 'omniauth-facebook'
