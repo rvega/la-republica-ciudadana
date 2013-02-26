@@ -50,7 +50,7 @@
     padding-top: 50px;
   }
 
-  .pagina-estatica{
+  #main-container{
     min-height:450px;
   }
 
@@ -118,17 +118,25 @@
     }
   }
 
+// #=================#
+// #  EDITAR PERFIL  #
+// #=================#
+
 // #==================#
 // #  NUEVA PREGUNTA  #
 // #==================#
-  #nueva-pregunta{
+  #nueva-pregunta, #editar-perfil{
+    hr{
+      margin:0px 0px 20px 0px;
+    }
+
     .hero-unit{
-      padding:30px;
+      padding:20px;
       font-weight:normal;
     }  
 
     p{
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       font-size:16px;
       line-height:normal;
       small{
@@ -137,13 +145,13 @@
     }
 
 
-    #pregunta_topico{
-      margin:0px;
+    input[type=email], input[type=text], input[type=password]{
+      margin-bottom:0px;
       vertical-align:middle;
       width: 94%;
     }
 
-    #pregunta_cuerpo{
+    textarea{
       margin:0px;
       width: 94%;
     }

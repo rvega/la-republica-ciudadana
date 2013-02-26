@@ -1,0 +1,36 @@
+<div id="detalle-usuario">
+  <% if @usuario.id == current_usuario.id %>
+    <p class="pull-right">
+      <a href="<%= edit_usuario_registration_path %>" class="btn btn-small"><i class="icon-lock"></i> Edite su perfil</a>
+    </p>
+  <% end %>
+
+  <h2><%= @usuario.nombre %></h2>
+
+  <% unless @usuario.descripcion.nil? %>
+    <p><%= @usuario.descripcion %></p>
+  <% else %>
+    <p><%= @usuario.nombre %> no ha ingresado una descripción a su perfil.</p>
+  <% end %>
+
+  <hr>
+
+  <h3>Participación</h3>
+
+  <ul class="nav nav-tabs">
+    <li <%= raw('class="active"') if @participacion=='preguntas' %>><a href="/usuarios/<%= @usuario.id %>">Preguntas</a></li>
+    <li <%= raw('class="active"') if @participacion=='respuestas' %>><a href="/usuarios/<%= @usuario.id %>/respuestas">Respuestas</a></li>
+    <li <%= raw('class="active"') if @participacion=='comentarios' %>><a href="/usuarios/<%= @usuario.id %>/comentarios">Comentarios</a></li>
+    <li <%= raw('class="active"') if @participacion=='votos' %>><a href="/usuarios/<%= @usuario.id %>/votos">Votos</a></li>
+  </ul>
+
+  <% if @preguntas.empty? %>
+    <h4 style="text-align:center"><%= @usuario.nombre %> no ha <%= @verbo %>.</h4>
+  <% else %>
+    <ul id="preguntas-lista">
+      <% @preguntas.each do |pregunta| %>
+        <%= render 'preguntas/pregunta', :pregunta=>pregunta %>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

@@ -19,6 +19,7 @@ RepublicaCiudadana::Application.routes.draw do
     }
 
   resources :usuarios
+  match 'usuarios/:id(/:participacion)' => 'usuarios#show'
   resources :preguntas, :path_names => { :new => 'nueva', :edit => 'editar' }
   resources :respuestas
   resources :comentarios

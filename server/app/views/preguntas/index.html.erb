@@ -36,25 +36,7 @@
   <% else %>
     <ul id="preguntas-lista">
       <% @preguntas.each do |pregunta| %>
-        <li>
-          <div class="num-respuestas" data-toggle="tooltip" title="Esta pregunta tiene <%= pluralize(pregunta.respuestas_count, 'respuesta')%>.">
-            <%= pregunta.respuestas_count %><i class="icon-ok"></i>
-          </div>
-          <div class="num-comentarios" data-toggle="tooltip" title="Esta pregunta tiene <%= pluralize(pregunta.comentarios_count, 'comentario')%>.">
-            <%= pregunta.comentarios_count %><i class="icon-comment"></i>
-          </div>
-          <h3>
-            <a href="<%= pregunta_path(pregunta) %>"><span class="muted">
-                ¿Qué puedo hacer como ciudadano colombiano para</span> <%= pregunta.topico %>
-              <span class="muted">?</span>
-          </span></a>
-        </h3>
-        <p class="tags">
-          <% pregunta.etiquetas.each do |e| %>
-            <span data-toggle="tooltip" title="Esta pregunta ha sido etiquetada <%= e.etiqueta %>." class="label"><a href="/?busqueda=<%= e.etiqueta %>"><%= e.etiqueta %></a></span>
-          <% end %>
-          <hr>
-        </li>
+        <%= render 'preguntas/pregunta', :pregunta=>pregunta %>
       <% end %>
     </ul>
   <% end %>

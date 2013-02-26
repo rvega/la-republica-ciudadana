@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20130225210633) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "rol"
+    t.string   "descripcion"
   end
 
   add_index "usuarios", ["email"], :name => "index_usuarios_on_email", :unique => true

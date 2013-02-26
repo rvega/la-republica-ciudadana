@@ -1,29 +1,71 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div id="editar-perfil">
+  <h2>Edite su perfil.</h2>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+    <div class="hero-unit">
+      <% if resource.errors.any? %>
+        <div class="alert alert-error">
+          <strong>Atención!</strong>
+          <br>Debe corregir los siguientes errores para poder editar su perfil:
+          <ul>
+            <% resource.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+      <div class="row-fluid">
+        <fieldset class="span5">
+          <p>
+            Nombre: 
+            <br><%= f.text_field :nombre %>
+          </p>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+          <p>
+            Email: 
+            <br><%= f.email_field :email %>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <p class="alert alert-notice">Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+            <% end %>
+          </p>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <p>
+            Perfil:
+            <br><%= f.text_area :descripcion, :rows=>5 %>
+          </p>
+
+          <p>
+            Contraseña actual:
+            <br><%= f.password_field :current_password, :autocomplete => "off" %>
+            <br><small class="muted"><i>Debe ingresarla para confirmar sus cambios</i></small>
+          </p>
+
+          <p>
+            <%= f.submit "Edite su perfil", :disable_with=>"Enviando...", :class=>"btn btn-primary" %>
+          </p>
+        </fieldset>
+
+        <fieldset class="span5 offset1">
+          <p>
+            Contraseña nueva: 
+            <br><%= f.password_field :password, :autocomplete => "off" %>
+            <br><small class="muted"><i>Deje este campo en blanco si no la quiere cambiar</i></small>
+          </p>
+
+          <p>
+            Confirme su contraseña nueva: 
+            <br><%= f.password_field :password_confirmation, :autocomplete => "off" %>
+            <br><small class="muted"><i>Deje este campo en blanco si no la quiere cambiar</i></small>
+          </p>
+        </fieldset>
+      </div>
+      </div>
+    </div>
+
   <% end %>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit "Update", :disable_with=>"Enviando..." %></div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
-
-<%= link_to "Back", :back %>
+  <% if false %>
+    <h3>Cancel my account</h3>
+    <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
+  <% end %>
+</div>
