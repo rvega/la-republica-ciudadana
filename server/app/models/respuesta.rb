@@ -7,13 +7,13 @@ class Respuesta < ActiveRecord::Base
 
   validates :cuerpo, :length => { :in => 15..30000 }
 
-  validate :only_one_respuesta_per_pregunta, :on=>:create
-  def only_one_respuesta_per_pregunta
-    r = Respuesta.where("pregunta_id=? AND usuario_id=?", self.pregunta_id, self.usuario_id).count
-    if r>0
-      errors.add(:usuario_id, "Usted ya ha ingresado una respuesta para esta pregunta.")
-    end
-  end
+  # validate :only_one_respuesta_per_pregunta, :on=>:create
+  # def only_one_respuesta_per_pregunta
+  #   r = Respuesta.where("pregunta_id=? AND usuario_id=?", self.pregunta_id, self.usuario_id).count
+  #   if r>0
+  #     errors.add(:usuario_id, "Usted ya ha ingresado una respuesta para esta pregunta.")
+  #   end
+  # end
 
   has_many :comentarios, :as=>:comentable
   has_many :votos, :as=>:votable

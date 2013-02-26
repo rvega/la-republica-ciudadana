@@ -5,7 +5,7 @@
   <h1>República Ciudadana</h1>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    <a href="<%= page_path("acerca-de") %>">Lea Mas &raquo;</a>
+    <a href="<%= page_path("acerca-de") %>">Lea mas &raquo;</a>
   </p>
   <% if usuario_signed_in? %>
     <p><%= link_to raw("Formule una pregunta &raquo;"), new_pregunta_path, :class => "btn btn-primary"%></p>

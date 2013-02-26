@@ -43,6 +43,8 @@ class Ability
     # Logged users
     # TO-DO check for non blocked user
     elsif usuario.id
+      can :create, Respuesta
+
       can :create, Pregunta
       can :update, Pregunta, :usuario_id=>usuario.id
       

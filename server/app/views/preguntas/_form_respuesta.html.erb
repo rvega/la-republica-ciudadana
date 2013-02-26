@@ -33,7 +33,29 @@
     <br><%= f.text_area :cuerpo, {:cols=>"", :rows=>"8", :class=>'wysiwyg'}  %>
     <br><small class="muted"><i>Recuerde que lorem ipsum dolorem sit amet.</i></small>
   </p>
-  <p>
-    <%= f.submit raw("#{verbo2} su respuesta"), :class=>"btn btn-primary", :disable_with=>"Enviando..." %>
-  </p>
+  <!!-- TODO: no modal if editing -->
+  <% if @pregunta.usuario_already_answered(current_usuario) %>
+    <% content_for :modal do %>
+      <div id="confirm-modal" class="modal hide fade">
+        <div class="modal-header">
+          <h4>Está seguro?</h4>
+        </div>
+        <div class="modal-body">
+            Usted ya publicó una respuesta para esta pregunta, le recomendamos editar su pregunta anterior en lugar de publicar una nueva.
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-dismiss="modal" class="btn btn-primary">Ok, voy a editar.</a>
+          <a href="#" class="btn" onClick="debugger; $('#new_respuesta').submit();">Publicar mi nueva respuesta!</a>
+        </div>
+      </div>
+    <% end %>
+    <p>
+      <a class="btn btn-primary" data-target="#confirm-modal" role="button" data-toggle="modal"><%= verbo2 %> su respuesta</a>
+    </p>
+  <% else #not already answered %> 
+    <p>
+      <%= f.submit raw("#{verbo2} su respuesta"), :class=>"btn btn-primary", :disable_with=>"Enviando..." %>
+    </p>
+  <% end %>
 <% end %>
+

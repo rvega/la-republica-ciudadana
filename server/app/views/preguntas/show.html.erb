@@ -95,12 +95,12 @@
   <!-- ====================== -->
   <!--  FORM NUEVA RESPUESTA  -->
   <!-- ====================== -->
-  <% if usuario_signed_in? and not @pregunta.usuario_already_answered(current_usuario) %>
+  <% if usuario_signed_in? %>
     <div id="nueva-respuesta">
       <h3>Su Respuesta</h3>
       <%= render 'preguntas/form_respuesta', :respuesta=>@respuesta, :is_new=>true %>
     </div>
-  <% elsif not usuario_signed_in? %>
+  <% else %>
     <a class="btn btn-primary" href="<%= new_usuario_session_path %>">Ingrese para publicar una respuesta &raquo;</a>
   <% end %>
 </div>
