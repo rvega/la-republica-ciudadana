@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225210633) do
+ActiveRecord::Schema.define(:version => 20130226232705) do
 
   create_table "comentarios", :force => true do |t|
     t.integer  "usuario_id"
@@ -42,8 +42,9 @@ ActiveRecord::Schema.define(:version => 20130225210633) do
     t.string   "topico"
     t.string   "cuerpo"
     t.integer  "score"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "extrana",    :default => false, :null => false
   end
 
   add_index "preguntas", ["cuerpo"], :name => "index_preguntas_on_cuerpo"

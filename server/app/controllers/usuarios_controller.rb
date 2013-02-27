@@ -53,6 +53,8 @@ class UsuariosController < ApplicationController
       @preguntas = @usuario.preguntas
     end
 
+    @preguntas.select! {|p| not p.extrana }
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @usuario }

@@ -18,11 +18,13 @@ class PreguntasController < ApplicationController
     b = params[:busqueda]
     if b.nil? or b.strip.empty?
       @preguntas = Pregunta.includes(:etiquetas)
+        .where("extrana=?", false)
         .paginate(:page => params[:pagina], :per_page=>20)
         .order(s)
     else
       @preguntas = Pregunta.joins(:etiquetas)
         .where("etiquetas.etiqueta=? OR preguntas.topico LIKE ? OR preguntas.cuerpo LIKE ?", b, "%#{b}%", "%#{b}%") 
+        .where("extrana=?", false)
         .uniq
         .paginate(:page => params[:pagina], :per_page=>20)
         .order('created_at DESC')

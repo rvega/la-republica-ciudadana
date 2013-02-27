@@ -4,14 +4,18 @@
 <div class="hero-unit">
   <h1>República Ciudadana</h1>
   <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    <a href="<%= page_path("acerca-de") %>">Lea mas &raquo;</a>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
+    <a href="<%= page_path("acerca-de") %>"><small>Lea mas &raquo;</small></a>
   </p>
+
   <% if usuario_signed_in? %>
-    <p><%= link_to raw("Formule una pregunta &raquo;"), new_pregunta_path, :class => "btn btn-primary"%></p>
-  <% else %>
-    <p><%= link_to raw("Ingrese para participar &raquo;"), new_usuario_session_path, :class => "btn btn-primary"%></p>
-  <% end %>
+    <p>
+      <%= link_to raw("Denos su opinión &raquo;"), pregunta_path(1), :class=>"btn"%>
+      <%= link_to raw("Formule una pregunta &raquo;"), new_pregunta_path, :class => "btn btn-primary"%>
+    <% else %>
+      <%= link_to raw("Ingrese para participar &raquo;"), new_usuario_session_path, :class => "btn btn-primary"%>
+    <% end %>
+  </p>
 </div>
 
 <!--==============-->

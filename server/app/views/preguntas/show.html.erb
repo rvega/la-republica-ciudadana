@@ -1,5 +1,9 @@
 <div id="detalle-pregunta">
+  <% if @pregunta.extrana %>
+    <h2><%= @pregunta.topico %></h2>
+  <% else %>
   <h2>¿Qué puedo hacer como ciudadano colombiano para <%= @pregunta.topico %>?</h2>
+  <% end %>
   <hr>
 
   <!-- ================ -->
@@ -16,14 +20,15 @@
     </div>
     <p class="meta">
       Pregunta formulada por <%= link_to @pregunta.usuario.nombre, usuario_path(@pregunta.usuario) %> hace <%= distance_of_time_in_words @pregunta.updated_at, Time.now %>.
+      <span class="tags">
+        Etiquetas: <% @pregunta.etiquetas.each do |e| %>
+          <span data-toggle="tooltip" title="Esta pregunta ha sido etiquetada <%= e.etiqueta %>." class="label"><a href="/?busqueda=<%= e.etiqueta %>"><%= e.etiqueta %></a></span>
+        <% end %>
+      </span>
     </p>
-      <% if usuario_signed_in? and current_usuario.id == @pregunta.usuario_id %>
-        <p><a class="btn btn-small btn-editar-pregunta" href="<%= edit_pregunta_path(@pregunta) %>"><i class="icon-pencil"></i> Edite su pregunta.</a></p>
-      <% end %>
-    <p class="tags">
-      <% @pregunta.etiquetas.each do |e| %>
-        <span data-toggle="tooltip" title="Esta pregunta ha sido etiquetada <%= e.etiqueta %>." class="label"><a href="/?busqueda=<%= e.etiqueta %>"><%= e.etiqueta %></a></span>
-      <% end %>
+    <% if usuario_signed_in? and current_usuario.id == @pregunta.usuario_id %>
+      <p><a class="btn btn-small btn-editar-pregunta" href="<%= edit_pregunta_path(@pregunta) %>"><i class="icon-pencil"></i> Edite su pregunta.</a></p>
+    <% end %>
   </div>
 
   <!-- ====================== -->

@@ -1,5 +1,5 @@
 <div id="detalle-usuario">
-  <% if @usuario.id == current_usuario.id %>
+  <% if not current_usuario.nil? and @usuario.id == current_usuario.id %>
     <p class="pull-right">
       <a href="<%= edit_usuario_registration_path %>" class="btn btn-small"><i class="icon-lock"></i> Edite su perfil</a>
     </p>

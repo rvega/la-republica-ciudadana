@@ -8,7 +8,25 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-if Rails.env.development?
-  Usuario.create :nombre=>"Rafael Vega", :email=>"email.rafa@gmail.com", :password=>"lalala121212", :password_confirmation=>"lalala121212", :rol=>'admin'
-  Usuario.create :nombre=>"Estefanía Piedrahíta", :email=>"estefaniapvp@gmail.com", :password=>"lalala121212", :password_confirmation=>"lalala121212" 
+
+class Usuario < ActiveRecord::Base
+  attr_accessible :id, :rol
 end
+
+class Pregunta < ActiveRecord::Base
+  attr_accessible :id, :usuario_id, :extrana, :topico, :cuerpo, :score
+end
+
+Usuario.create :id=>1, 
+  :nombre=>"Admin", 
+  :email=>"admin@admin.com", 
+  :password=>"lalala121212", 
+  :password_confirmation=>"lalala121212", 
+  :rol=>'admin'
+
+Pregunta.create :id=>1,
+  :topico=>"¿Cómo podemos mejorar la aplicación de La República Ciudadana?",
+  :cuerpo=>"Esta pregunta está claramente fuera de tópico pero la quisimos incluir para poder preguntarles a ustedes, los usuarios, que sugerencias o críticas tienen para nuestra aplicación. <br><br>Animense a participar y gracias por ayudarnos a mejorar!",
+  :usuario_id=>1,
+  :extrana=>1,
+  :score=>0
