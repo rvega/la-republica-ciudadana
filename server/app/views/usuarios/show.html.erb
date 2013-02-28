@@ -7,7 +7,7 @@
 
   <h2><%= @usuario.nombre %></h2>
 
-  <% unless @usuario.descripcion.nil? %>
+  <% if not @usuario.descripcion.nil? and not @usuario.descripcion.strip.empty? %>
     <p><%= @usuario.descripcion %></p>
   <% else %>
     <p><%= @usuario.nombre %> no ha ingresado una descripción a su perfil.</p>

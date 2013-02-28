@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226232705) do
+ActiveRecord::Schema.define(:version => 20130227132643) do
 
   create_table "comentarios", :force => true do |t|
     t.integer  "usuario_id"
@@ -74,8 +74,13 @@ ActiveRecord::Schema.define(:version => 20130226232705) do
     t.string   "last_sign_in_ip"
     t.string   "rol"
     t.string   "descripcion"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "usuarios", ["confirmation_token"], :name => "index_usuarios_on_confirmation_token", :unique => true
   add_index "usuarios", ["email"], :name => "index_usuarios_on_email", :unique => true
   add_index "usuarios", ["reset_password_token"], :name => "index_usuarios_on_reset_password_token", :unique => true
 

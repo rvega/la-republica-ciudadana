@@ -9,6 +9,8 @@
 
   <p><%= f.submit raw("Restablesca mi contraseña &raquo;"), :class=>"btn btn-primary", :disable_with=>"Enviando..."  %></p>
 
-  <%= render "devise/shared/links" %>
+  <p id="links">
+    <%= render "devise/shared/links" %>
+  </p>
 <% end %>
 

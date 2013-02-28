@@ -5,6 +5,8 @@ RepublicaCiudadana::Application.routes.draw do
     get 'usuarios/registrar', :to=>'registrations#new'
     get 'usuarios/registro/editar', :to=>'registrations#edit'
     get 'usuarios/salir', :to=>'sessions#destroy'
+    get 'usuarios/confirmar', :to=>'devise/confirmations#show'
+    get 'usuarios/confirmar/nuevo', :to=>'devise/confirmations#new'
   end
   devise_for :usuarios, 
     :controllers => {
