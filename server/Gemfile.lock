@@ -1,10 +1,3 @@
-GIT
-  remote: git@github.com:rvega/capifaction.git
-  revision: d5378bf3e23d40691a763ef7af7e02e94568ee55
-  specs:
-    capifaction (0.0.3)
-      capistrano (>= 2.12.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -105,6 +98,7 @@ GEM
     paper_trail (2.7.1)
       activerecord (~> 3.0)
       railties (~> 3.0)
+    pg (0.14.1)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -170,7 +164,6 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap-wysihtml5-rails
   cancan
-  capifaction!
   capistrano
   coffee-rails (~> 3.2.1)
   debugger
@@ -180,6 +173,7 @@ DEPENDENCIES
   immigrant
   jquery-rails
   paper_trail (~> 2)
+  pg
   rails (= 3.2.11)
   sanitize
   sass-rails (~> 3.2.3)

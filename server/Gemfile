@@ -28,9 +28,8 @@ gem 'paper_trail', '~> 2'
 # Serve static pages
 gem 'high_voltage'
 
-# Deploy easily to webfaction servers
+# Deploy with capistrano 
 gem 'capistrano'
-gem 'capifaction', :git => 'git@github.com:rvega/capifaction.git'
 
 group :production do
   gem 'pg'
