@@ -34,6 +34,7 @@ gem 'capifaction', :git => 'git@github.com:rvega/capifaction.git'
 
 group :production do
   gem 'pg'
+  gem 'therubyracer'
 end
 
 group :development do
