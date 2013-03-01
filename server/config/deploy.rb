@@ -24,7 +24,7 @@ set :default_environment, {
 
 # Paths in git repo
 set :subdir, "server"
-after "deploy:update_code", "deploy:checkout_subdir"
+before "deploy:assets:precompile", "deploy:checkout_subdir"
 namespace :deploy do
   desc "Checkout subdirectory and delete all the other stuff"
   task :checkout_subdir do
@@ -37,7 +37,7 @@ end
 
 # Database config file
 set :config_path, "/home/rvega/webapps/test_repu/config_files"
-after "deploy:update_code", "deploy:copy_config_files"
+after "deploy:checkout_subdir", "deploy:copy_config_files"
 namespace :deploy do
   desc "Copy config files"
   task :copy_config_files do

@@ -10,7 +10,7 @@
 
 
 class Usuario < ActiveRecord::Base
-  attr_accessible :id, :rol
+  attr_accessible :id, :rol, :confirmed_at
 end
 
 class Pregunta < ActiveRecord::Base
@@ -22,7 +22,8 @@ Usuario.create :id=>1,
   :email=>"admin@admin.com", 
   :password=>"lalala121212", 
   :password_confirmation=>"lalala121212", 
-  :rol=>'admin'
+  :rol=>'admin',
+  :confirmed_at => DateTime.new
 
 Pregunta.create :id=>1,
   :topico=>"¿Cómo podemos mejorar la aplicación de La República Ciudadana?",

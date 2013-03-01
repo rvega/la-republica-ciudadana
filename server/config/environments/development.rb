@@ -15,7 +15,7 @@ RepublicaCiudadana::Application.configure do
 
   # Send with gmail
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_deliveries = false
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -23,7 +23,7 @@ RepublicaCiudadana::Application.configure do
     :port                 => 587,
     :domain               => 'gmail.com',
     :user_name            => 'email.rafa',
-    :password             => '6578fafafa2',
+    :password             => '6578fafafa30',
     :authentication       => 'plain',
     :enable_starttls_auto => true 
   } 
