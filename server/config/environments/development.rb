@@ -22,8 +22,8 @@ RepublicaCiudadana::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => 'gmail.com',
-    :user_name            => 'email.rafa',
-    :password             => '6578fafafa30',
+    :user_name            => 'lalala',
+    :password             => 'lalala',
     :authentication       => 'plain',
     :enable_starttls_auto => true 
   } 

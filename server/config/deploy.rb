@@ -35,13 +35,14 @@ namespace :deploy do
   end
 end
 
-# Database config file
+# Sensitive config files
 set :config_path, "/home/rvega/webapps/test_repu/config_files"
 after "deploy:checkout_subdir", "deploy:copy_config_files"
 namespace :deploy do
   desc "Copy config files"
   task :copy_config_files do
-    run "cp -f #{config_path}/* #{current_release}/config" 
+    run "cp -f #{config_path}/database.yml #{current_release}/config" 
+    run "cp -f #{config_path}/environments/production.rb #{current_release}/environments" 
   end
 end
 
