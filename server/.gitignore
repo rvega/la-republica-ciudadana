@@ -16,3 +16,6 @@
 
 /vendor/gems
 /vendor/cache
+
+config/environments/development.rb
+
