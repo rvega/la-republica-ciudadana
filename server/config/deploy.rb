@@ -4,6 +4,7 @@ set :keep_releases, 10
 
 # Git stuff
 set :scm, :git 
+set :branch, "development"
 set :repository,  "https://github.com/rvega/la-republica-ciudadana"
 set :scm_username, "rvega"
 
