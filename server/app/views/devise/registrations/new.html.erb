@@ -1,14 +1,24 @@
+<% if resource.errors.any? %>
+  <div class="alert alert-error">
+    <strong>Atención!</strong>
+    <br>Debe corregir los siguientes errores para poder registrarse:
+    <ul>
+      <% resource.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for(resource, :as => resource_name, :url => usuario_registration_path, :html=>{:class=>'form-signin'}) do |f| %>
   <h2>Regístrese</h2>
-
-  <%= devise_error_messages! %>
 
   <p>
     <%= f.text_field :nombre, :autofocus => true, :class=>'input-block-level', :placeholder=>'Nombres' %>
   </p>
 
   <p>
-    <%= f.email_field :email, :class=>'input-block-level', :placeholder=>'Email' %>
+    <%= f.text_field :email, :class=>'input-block-level', :placeholder=>'Email' %>
   </p>
 
   <p>

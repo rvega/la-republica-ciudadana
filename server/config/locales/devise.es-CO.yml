@@ -1,4 +1,11 @@
-es:
+es-CO:
+  activerecord:
+    attributes:
+      usuario:
+        password: "La contraseña" 
+        nombre: "El nombre" 
+        email: "El email" 
+
   errors:
     messages:
       not_found: 'no encontrado'
@@ -11,6 +18,7 @@ es:
 
   devise:
     failure:
+      not_found_in_database: 'Contraseña o Email incorrecto.'
       already_authenticated: 'Ya está conectado/a.'
       unauthenticated: 'Necesita acceder a su cuenta o registrarse antes de continuar.'
       unconfirmed: 'Necesita confirmar su cuenta antes de continuar.'
