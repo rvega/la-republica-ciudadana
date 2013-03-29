@@ -31,7 +31,6 @@ Cómo configurar el ambiente de desarrollo en Ubuntu 12.04
 ### 3. Inicialize la base de datos
 
     rake db:setup
-    rake db:seed
 
 Cómo contribuir código
 ----------------------
