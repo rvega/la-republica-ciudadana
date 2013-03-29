@@ -30,5 +30,14 @@ Cómo configurar el ambiente de desarrollo en Ubuntu 12.04
 
 ### 3. Inicialize la base de datos
 
-   rake db:setup
+    rake db:setup
+    rake db:seed
 
+Cómo contribuir código
+----------------------
+
+Si usted no es un contribuidor de La República Ciudadana, por favor haga un fork de nuestro repositorio, crée un branch nuevo y envíenos un pull request cuando haya terminado.
+
+Si usted es un contribuidor, crée un branch nuevo y cuando haya terminado, haga merge al branch development.
+
+Gracias!
