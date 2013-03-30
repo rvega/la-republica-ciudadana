@@ -3,7 +3,7 @@ require 'test_helper'
 class VotoTest < ActiveSupport::TestCase
   test "should update the user's score" do
     user = usuarios(:rafa)
-    user.update_puntaje_votos()
+    user.update_puntaje_votos
     voter = usuarios(:fanny)
     score = user.puntaje
 
@@ -32,9 +32,9 @@ class VotoTest < ActiveSupport::TestCase
 
   test "should revert the user's score" do
     user = usuarios(:rafa)
-    user.update_puntaje_votos()
+    user.update_puntaje_votos
     score = user.puntaje
-    votos(:two).destroy()
+    votos(:two).destroy
     user.reload
     assert score > user.puntaje, "New 'puntaje' #{score} must be less than the previous #{user.puntaje}"
   end
