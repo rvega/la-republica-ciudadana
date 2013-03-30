@@ -1,9 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  usuario_id: 1
+  usuario: rafa
   value: 1
+  votable_id: 1
+  votable_type: 'Respuesta'
 
 two:
-  usuario_id: 1
+  usuario: rafa
   value: 1
+  votable_id: 1
+  votable_type: 'Pregunta'
+
+three:
+  usuario: rafa
+  value: -1
+  votable_id: 1
+  votable_type: 'Respuesta'
+
+four:
+  usuario: fanny
+  value: -1
+  votable_id: 1
+  votable_type: 'Pregunta'

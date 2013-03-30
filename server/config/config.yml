@@ -1,0 +1,5 @@
+puntajes:
+  voto_pregunta_mas: 5
+  voto_pregunta_menos: -5
+  voto_respuesta_mas: 10
+  voto_respuesta_menos: -10

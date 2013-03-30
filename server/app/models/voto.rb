@@ -24,7 +24,7 @@ class Voto < ActiveRecord::Base
     end
   end
 
-  after_create :update_score
+  after_create :update_score, :update_puntaje_usuario
   def update_score
     if self.votable_type=='Pregunta'
       p = Pregunta.find self.votable_id 
@@ -33,6 +33,10 @@ class Voto < ActiveRecord::Base
       p = Pregunta.find r.pregunta_id 
     end
     p.calculate_score
+  end
+
+  def update_puntaje_usuario
+    usuario.update_puntaje(value, votable_type)
   end
 
 end
