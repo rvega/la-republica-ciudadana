@@ -20,10 +20,9 @@ class Usuario < ActiveRecord::Base
 
   # Puntaje
 
-  # Actualiza el puntaje basado en un valor de voto y un tipo
-  # de votable
+  # Actualiza el puntaje basado en un voto
   def update_puntaje(vote)
-    points = get_points(vote)
+    points = get_puntaje(vote.value, vote.votable_type)
     increment!(:puntaje, points)
   end
 
@@ -31,7 +30,7 @@ class Usuario < ActiveRecord::Base
   # tiene asociado
   def update_puntaje_votos
     points = votable_votes.inject(0) do |points, v|
-      points + get_points(v)
+      points + get_puntaje(v.value, v.votable_type)
     end
     update_attribute(:puntaje, points)
   end
@@ -40,10 +39,10 @@ class Usuario < ActiveRecord::Base
 
     # Calcula el puntaje para el valor de un voto y un tipo de
     # votable
-    def get_points(vote)
-      type = vote.votable_type.downcase
-      sign = vote.value < 0 ? "menos" : "mas"
-      points = PUNTAJES_CONFIG["voto_#{type}_#{sign}"]
+    def get_puntaje(value, type)
+      type = type.downcase
+      sign = value < 0 ? "menos" : "mas"
+      PUNTAJES_CONFIG["voto_#{type}_#{sign}"]
     end
 
     # Retorna un arreglo con todos los votos de las preguntas y
