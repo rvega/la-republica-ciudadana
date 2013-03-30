@@ -36,12 +36,13 @@ class Voto < ActiveRecord::Base
     p.calculate_score
   end
 
-  def update_puntaje_usuario(value = value)
-    votable.usuario.update_puntaje(value, votable_type)
+  def update_puntaje_usuario
+    votable.usuario.update_puntaje(self)
   end
 
   def revert_puntaje_usuario
-    update_puntaje_usuario(value * -1)
+    self.value *= -1
+    update_puntaje_usuario
   end
 
 end
