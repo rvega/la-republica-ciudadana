@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'debugger'
 
 class VotoTest < ActiveSupport::TestCase
   test "should update the user's score" do
