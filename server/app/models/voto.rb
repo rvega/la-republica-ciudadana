@@ -25,6 +25,7 @@ class Voto < ActiveRecord::Base
   end
 
   after_create :update_score, :update_puntaje_usuario
+  before_destroy :revert_puntaje_usuario
   def update_score
     if self.votable_type=='Pregunta'
       p = Pregunta.find self.votable_id 
@@ -35,8 +36,12 @@ class Voto < ActiveRecord::Base
     p.calculate_score
   end
 
-  def update_puntaje_usuario
-    usuario.update_puntaje(value, votable_type)
+  def update_puntaje_usuario(value = value)
+    votable.usuario.update_puntaje(value, votable_type)
+  end
+
+  def revert_puntaje_usuario
+    update_puntaje_usuario(value * -1)
   end
 
 end

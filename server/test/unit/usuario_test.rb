@@ -35,7 +35,7 @@ class UsuarioTest < ActiveSupport::TestCase
     assert_score_changed(false, 'Respuesta')
   end
 
-  test "should compute the overall votes" do
+  test "should compute the overall score of all votes" do
     exp_score = 5
     @user.update_puntaje_votos()
     assert_equal exp_score, @user.puntaje
