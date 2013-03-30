@@ -6,6 +6,7 @@
   <% end %>
 
   <h2><%= @usuario.nombre %></h2>
+  <p class="puntaje" title="Puntaje acumulado por votos a preguntas y respuestas"><%= @usuario.puntaje %> puntos</p>
 
   <% if not @usuario.descripcion.nil? and not @usuario.descripcion.strip.empty? %>
     <p><%= @usuario.descripcion %></p>

@@ -19,7 +19,7 @@
       <%= @pregunta.cuerpo.html_safe %>
     </div>
     <p class="meta">
-      Pregunta formulada por <%= link_to @pregunta.usuario.nombre, usuario_path(@pregunta.usuario) %> hace <%= distance_of_time_in_words @pregunta.updated_at, Time.now %>.
+      Pregunta formulada por <%= link_to scored_username(@pregunta.usuario), usuario_path(@pregunta.usuario) %> hace <%= distance_of_time_in_words @pregunta.updated_at, Time.now %>.
       <span class="tags">
         Etiquetas: <% @pregunta.etiquetas.each do |e| %>
           <span data-toggle="tooltip" title="Esta pregunta ha sido etiquetada <%= e.etiqueta %>." class="label"><a href="/?busqueda=<%= e.etiqueta %>"><%= e.etiqueta %></a></span>
@@ -69,7 +69,7 @@
         <div class="user_input_html">
           <%= respuesta.cuerpo.html_safe %>
         </div>
-        <p class="meta">Respuesta ingresada por <%= link_to respuesta.usuario.nombre, usuario_path(respuesta.usuario) %> hace <%= distance_of_time_in_words respuesta.updated_at, Time.now %>.</p>
+        <p class="meta">Respuesta ingresada por <%= link_to scored_username(respuesta.usuario), usuario_path(respuesta.usuario) %> hace <%= distance_of_time_in_words respuesta.updated_at, Time.now %>.</p>
       </div>
       <% if usuario_signed_in? and current_usuario.id == respuesta.usuario_id %>
         <p><a class="respuesta-edit-btn btn btn-small" href="#"><i class="icon-pencil"></i> Edite su respuesta.</a></p>
