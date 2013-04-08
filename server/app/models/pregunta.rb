@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Pregunta < ActiveRecord::Base
   has_paper_trail
 
@@ -12,8 +13,8 @@ class Pregunta < ActiveRecord::Base
   has_many :comentarios, :as=>:comentable
 
   validates :topico, :length => { :in => 3..150 }
-  validates :cuerpo, :length => { :in => 15..30000 }
-  validates :etiquetas_list, :presence=>true
+  validates :cuerpo, :length => { :in => 15..30000, :message => "es demasiado corto (mínimo 15 caracteres)"}
+  validates :etiquetas_list, :presence=>{ :presence=>true, :message => "no pueden estar vacías"}
 
   include Mixins::HtmlCleaner
   before_validation do |pregunta|

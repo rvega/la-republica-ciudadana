@@ -1,6 +1,9 @@
 es-CO:
+
   create: crear
+  destroy: eliminar
   new: crear
+  update: editar
   
   date:
     abbr_day_names:
@@ -101,7 +104,7 @@ es-CO:
   errors: &errors
     format: ! '%{attribute} %{message}'
     messages:
-      accepted: debe ser aceptado
+      accepted: Debe aceptar los términos y condiciones de uso
       blank: no puede estar en blanco
       confirmation: no coincide con la confirmación
       empty: no puede estar vacío
@@ -203,6 +206,19 @@ es-CO:
   activemodel:
     errors:
       <<: *errors
+
   activerecord:
+    models:
+      voto: "valoración"
+    attributes:
+      comentario:
+        cuerpo: "El comentario"
+      respuesta:
+        cuerpo: "La respuesta"
+      pregunta:
+        topico: "La pregunta"
+        cuerpo: "El texto complementario"
+        etiquetas_list: "Las etiquetas"
+
     errors:
       <<: *errors

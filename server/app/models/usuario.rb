@@ -9,11 +9,12 @@ class Usuario < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :nombre, :descripcion
+  attr_accessible :nombre, :descripcion, :acepta_terminos
   has_many :comentarios
   has_many :preguntas
   has_many :respuestas
   has_many :votos
 
   validates :nombre, :presence=>true
+  validates :acepta_terminos, :acceptance=>{:accept=>true}, :on => :create
 end

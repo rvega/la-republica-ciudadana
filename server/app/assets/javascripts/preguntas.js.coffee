@@ -68,14 +68,11 @@ $(document).ready ->
   $('[data-toggle=tooltip]').tooltip placement:'right'
 
   # WYSIWYG
-  $('#formato').click ->
-    $('#formato').hide()
-    $('.wysiwyg').wysihtml5
-      'font-styles':false,
-      image:false,
-      locale:'es-AR',
-      color:true,
-    false
+  $('.wysiwyg').wysihtml5
+    'font-styles':false,
+    image:false,
+    locale:'es-AR',
+    color:true,
 
   # VOTOS
   delete_voto = (id, type) ->

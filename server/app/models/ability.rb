@@ -44,6 +44,7 @@ class Ability
     # TO-DO check for non blocked user
     elsif usuario.id
       can :create, Respuesta
+      can :update, Respuesta, :usuario_id=>usuario.id
 
       can :create, Pregunta
       can :update, Pregunta, :usuario_id=>usuario.id
@@ -52,7 +53,7 @@ class Ability
       can :update, Comentario, :usuario_id=>usuario.id
 
       can :create, Voto
-      can :delete, Voto, :usuario_id=>usuario.id
+      can :destroy, Voto, :usuario_id=>usuario.id
     end
   end
 end

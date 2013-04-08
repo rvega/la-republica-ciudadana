@@ -30,6 +30,14 @@
   </p>
 
   <p>
+    <%= f.text_area :descripcion, :class=>'input-block-level', :placeholder=>'Perfil (opcional)', :rows=>4%>
+  </p>
+
+  <p>
+    <%= f.check_box :acepta_terminos %> Acepto los <a href="/terminos">términos y condiciones de uso</a> <br>de La República Ciudadana.
+  </p>
+
+  <p>
     <%= f.submit raw("Regístrese &raquo;"), :class=>'btn btn-primary', :disable_with=>"Enviando..." %>
   </p>
 
