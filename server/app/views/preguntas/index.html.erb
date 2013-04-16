@@ -2,10 +2,10 @@
 <!--RECUADRO GRANDOTE-->
 <!--=================-->
 <div class="hero-unit">
-  <h1>República Ciudadana</h1>
+  <h1>La República Ciudadana</h1>
   <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
-    <a href="<%= page_path("acerca-de") %>"><small>Lea mas &raquo;</small></a>
+    Es un espacio público que permite conversar y poner en común el conocimiento acerca del ser y el quehacer del ciudadano colombiano, a través de la formulación y  la contestación de preguntas.
+    <a href="<%= page_path("acerca-de") %>"><small>Lea más &raquo;</small></a>
   </p>
 
   <% if usuario_signed_in? %>
@@ -23,12 +23,12 @@
 <!--==============-->
 <ul class="nav nav-tabs">
   <% unless params[:busqueda] %>
-    <li <%= raw('class="active"') if params[:orden].nil? %>><a href="/">Todas las preguntas.</a></li>
-    <li <%= raw('class="active"') if params[:orden]=='mas' %>><a href="?orden=mas">Preguntas con menos participación.</a></li>
-    <li <%= raw('class="active"') if params[:orden]=='menos' %>><a href="?orden=menos">Preguntas con mas participación.</a></li>
+    <li <%= raw('class="active"') if params[:orden].nil? %>><a href="/">Todas las preguntas</a></li>
+    <li <%= raw('class="active"') if params[:orden]=='mas' %>><a href="?orden=mas">Preguntas con menos participación</a></li>
+    <li <%= raw('class="active"') if params[:orden]=='menos' %>><a href="?orden=menos">Preguntas con más participación</a></li>
   <% else %>
-    <li class="active"><a href="#">Resultados de su búsqueda.</a></li>
-    <li><a href="/">Todas las preguntas.</a></li>
+    <li class="active"><a href="#">Resultados de su búsqueda</a></li>
+    <li><a href="/">Todas las preguntas</a></li>
   <% end %>
 </ul>
 

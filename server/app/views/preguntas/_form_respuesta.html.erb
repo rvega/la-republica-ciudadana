@@ -31,14 +31,14 @@
   <p>
     <span id="formato"><small><a href="#">Vea opciones de formato.</a></small></span>
     <br><%= f.text_area :cuerpo, {:cols=>"", :rows=>"8", :class=>'wysiwyg'}  %>
-    <br><small class="muted"><i>Recuerde que lorem ipsum dolorem sit amet.</i></small>
+    <br><small class="muted"><i>Por favor publique respuestas que sólo tengan relación directa con la pregunta formulada y que contesten las inquietudes expuestas. Si va a emplear enlaces para responder, asegúrese de que lleven una explicación o una descripción que le aporten a la pregunta formulada. Y recuerde no agregar  información demasiado extensa, impertinente, ofensiva o publicitaria.</i></small>
   </p>
   <!!-- TODO: no modal if editing -->
   <% if @pregunta.usuario_already_answered(current_usuario) %>
     <% content_for :modal do %>
       <div id="confirm-modal" class="modal hide fade">
         <div class="modal-header">
-          <h4>Está seguro?</h4>
+          <h4>¿Está seguro?</h4>
         </div>
         <div class="modal-body">
             Usted ya publicó una respuesta para esta pregunta, le recomendamos editar su pregunta anterior en lugar de publicar una nueva.

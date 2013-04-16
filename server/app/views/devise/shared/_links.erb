@@ -1,17 +1,17 @@
 <%- if controller_name != 'sessions' %>
-  Ya ha creado una contraseña? <%= link_to "Ingrese.", new_session_path(resource_name) %><br />
+  ¿Ya ha creado una contraseña? <%= link_to "Ingrese.", new_session_path(resource_name) %><br />
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  No tiene una cuenta aún? <%= link_to "Regrístrese.", new_registration_path(resource_name) %><br />
+  ¿No tiene una cuenta aún? <%= link_to "Regrístrese.", new_registration_path(resource_name) %><br />
 <% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
-  <%= link_to "Olvidó su contraseña?", usuarios_contrasena_recordar_path %><br />
+  <%= link_to "¿Olvidó su contraseña?", usuarios_contrasena_recordar_path %><br />
 <% end -%>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "No recibió su email de confirmación?", usuarios_confirmar_nuevo_path %><br />
+  <%= link_to "¿No recibió su email de confirmación?", usuarios_confirmar_nuevo_path %><br />
 <% end -%>
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
