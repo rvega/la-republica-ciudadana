@@ -19,12 +19,14 @@ class PreguntasController < ApplicationController
     if b.nil? or b.strip.empty?
       @preguntas = Pregunta.includes(:etiquetas)
         .where("extrana=?", false)
+        .where("disabled=?", false)
         .paginate(:page => params[:pagina], :per_page=>20)
         .order(s)
     else
       @preguntas = Pregunta.joins(:etiquetas)
         .where("etiquetas.etiqueta=? OR preguntas.topico LIKE ? OR preguntas.cuerpo LIKE ?", b, "%#{b}%", "%#{b}%") 
         .where("extrana=?", false)
+        .where("disabled=?", false)
         .uniq
         .paginate(:page => params[:pagina], :per_page=>20)
         .order('created_at DESC')
@@ -40,6 +42,12 @@ class PreguntasController < ApplicationController
   # GET /preguntas/1.json
   def show
     @pregunta = Pregunta.find(params[:id])
+      
+    if @pregunta.disabled or @pregunta.nil?
+      raise ActionController::RoutingError.new('Not Found')
+      return
+    end
+
     @respuesta = Respuesta.new
     @comentario = Comentario.new
     @title = @pregunta.topico
@@ -98,5 +106,36 @@ class PreguntasController < ApplicationController
         format.json { render json: @pregunta.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # DELETE /preguntas/1.json
+  def destroy
+    pwd = params.delete(:current_password)
+    usuario = current_usuario
+
+    # pwd ok?
+    unless usuario.valid_password?(pwd)
+      head :unauthorized
+      return
+    end
+
+    # motivo present?
+    if params[:motivo].nil? or params[:motivo].size < 15
+      head :unprocessable_entity
+      return
+    end 
+
+    # mark pregunta as inactive and logout
+    @pregunta = Pregunta.find(params[:id])
+    @pregunta.disabled = true
+    @pregunta.save
+
+    # TODO:
+    # desactivar/borrar las respuestas y votos de esta pregunta
+
+    # send email to admin
+    AdminMailer.deleted_pregunta(@pregunta, params[:motivo]).deliver
+
+    head :no_content
   end
 end

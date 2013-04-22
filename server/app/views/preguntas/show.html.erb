@@ -29,10 +29,48 @@
     <% if usuario_signed_in? and current_usuario.id == @pregunta.usuario_id %>
       <p>
         <a class="btn btn-small btn-editar-pregunta" href="<%= edit_pregunta_path(@pregunta) %>"><i class="icon-pencil"></i> Edite su pregunta.</a>
-        <!-- <a class="btn btn-small btn-eliminar-pregunta" href="<%= edit_pregunta_path(@pregunta) %>"><i class="icon-trash"></i> Elimine su pregunta.</a> -->
+        <a class="btn btn-small" data-toggle="modal" data-target="#confirm-delete-pregunta" href="#"><i class="icon-trash"></i> Elimine su pregunta.</a>
       </p>
+
+      <!-- =================== -->
+      <!--  ELIMINAR PREGUNTA  -->
+      <!-- =================== -->
+      <% content_for :modal do %>
+        <div id="confirm-delete-pregunta" class="modal hide fade">
+          <div class="modal-header">
+            <h4>¿Está seguro?</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              <strong>Le sugerimos que deje publicado su contenido</strong> porque es de gran importancia para mantener la coherencia de las discusiones y las diversas perspectivas sobre las temáticas de ciudadanía.
+            </p>
+
+            <p>
+              De igual manera, si decide lo contrario, le pedimos que por favor nos cuente los motivos de la eliminación de su contenido publicado:  
+            </p>
+
+            <form action=" ">
+              <input type="hidden" id="pregunta_id" value="<%= @pregunta.id  %>" />
+              <p>
+                Motivos para eliminar su pregunta:
+                <textarea name="" id="motivos" rows="4" style="width:97%"></textarea>
+              </p>
+              <p>
+                Su contraseña:<br>
+                <input type="password" id="current_password" />
+              </p>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <a href="#" data-dismiss="modal" class="btn btn-primary">No eliminar</a>
+            <a href="#" class="btn btn-danger" id="btn-eliminar-pregunta">Eliminar</a>
+          </div>
+        </div>
+      <% end %>
+
     <% end %>
   </div>
+  
 
   <!-- ====================== -->
   <!--  COMENTARIOS PREGUNTA  -->

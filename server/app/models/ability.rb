@@ -48,6 +48,7 @@ class Ability
 
       can :create, Pregunta
       can :update, Pregunta, :usuario_id=>usuario.id
+      can :destroy, Pregunta, :usuario_id=>usuario.id
       
       can :create, Comentario
       can :update, Comentario, :usuario_id=>usuario.id
