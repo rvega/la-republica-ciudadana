@@ -27,7 +27,10 @@
       </span>
     </p>
     <% if usuario_signed_in? and current_usuario.id == @pregunta.usuario_id %>
-      <p><a class="btn btn-small btn-editar-pregunta" href="<%= edit_pregunta_path(@pregunta) %>"><i class="icon-pencil"></i> Edite su pregunta.</a></p>
+      <p>
+        <a class="btn btn-small btn-editar-pregunta" href="<%= edit_pregunta_path(@pregunta) %>"><i class="icon-pencil"></i> Edite su pregunta.</a>
+        <!-- <a class="btn btn-small btn-eliminar-pregunta" href="<%= edit_pregunta_path(@pregunta) %>"><i class="icon-trash"></i> Elimine su pregunta.</a> -->
+      </p>
     <% end %>
   </div>
 

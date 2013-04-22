@@ -42,11 +42,11 @@ RepublicaCiudadana::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address               => "smtp.mail.com",
+    :address               => "smtp.webfaction.com",
     :port                  => 587,
-    :domain                => "mail.co",
-    :user_name             => "mail_user",
-    :password              => "mail_pwd",
+    :domain                => "larepublicaciudadana.co",
+    :user_name             => "rafael_republica",
+    :password              => "ciudadania",
     :enable_starttls_auto  => true
   }
 end

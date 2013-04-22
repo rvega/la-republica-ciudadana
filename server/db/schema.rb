@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408003153) do
+ActiveRecord::Schema.define(:version => 20130422191959) do
 
   create_table "comentarios", :force => true do |t|
     t.integer  "usuario_id"
@@ -60,10 +60,10 @@ ActiveRecord::Schema.define(:version => 20130408003153) do
 
   create_table "usuarios", :force => true do |t|
     t.string   "nombre"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20130408003153) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.boolean  "acepta_terminos"
+    t.boolean  "disabled",               :default => false
   end
 
   add_index "usuarios", ["confirmation_token"], :name => "index_usuarios_on_confirmation_token", :unique => true

@@ -98,4 +98,35 @@ class UsuariosController < ApplicationController
       end
     end
   end
+  
+  # DELETE /usuarios/1.json
+  def destroy
+    pwd = params.delete(:current_password)
+    @usuario = current_usuario
+
+    # pwd ok?
+    unless @usuario.valid_password?(pwd)
+      head :unauthorized
+      return
+    end
+
+    # motivo present?
+    if params[:motivo].nil? or params[:motivo].size < 15
+      head :unprocessable_entity
+      return
+    end 
+
+    # mark user as inactive and logout
+    @usuario.disabled = true
+    @usuario.save
+    sign_out(@usuario)
+
+    # TODO:
+    # desactivar/borrar el contenido de este usuario
+
+    # send email to admin
+    AdminMailer.deleted_perfil(@usuario, params[:motivo]).deliver
+
+    head :no_content
+  end
 end

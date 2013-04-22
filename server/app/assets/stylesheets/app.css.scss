@@ -7,19 +7,14 @@
   color:#FFF;
 } 
 
-// .tooltip-inner{
-  // max-width: none; //400px !important;
-  // padding:5px !important;
-  // font-weight:normal;
-// }
-
 .hidden{
   display:none;
 }
 
-// .modal{
-//   margin: 0px auto;
-// }
+// Modal dialog
+#confirm-delete{
+  position:absolute;
+}
 
 // #=========#
 // #  LOGIN  #

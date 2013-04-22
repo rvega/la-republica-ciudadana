@@ -42,6 +42,7 @@ class PreguntasController < ApplicationController
     @pregunta = Pregunta.find(params[:id])
     @respuesta = Respuesta.new
     @comentario = Comentario.new
+    @title = @pregunta.topico
 
     respond_to do |format|
       format.html # show.html.erb
@@ -53,6 +54,7 @@ class PreguntasController < ApplicationController
   # GET /preguntas/new.json
   def new
     @pregunta = Pregunta.new
+    @title = 'Nueva Pregunta'
 
     respond_to do |format|
       format.html # new.html.erb

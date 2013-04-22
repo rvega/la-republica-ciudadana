@@ -161,3 +161,47 @@ $(document).ready ->
     delete_voto element.attr('data-votable-id'), element.attr('data-votable-type')
     false
 
+  # Confirmar Eliminar Perfil
+  $('#btn-eliminar-perfil').click (event) ->
+    id = $('#usuario_id').val()
+    $('#btn-eliminar-perfil').html('Eliminando...')
+    $('#btn-eliminar-perfil').addClass('disabled')
+
+    $.ajax(
+      url: "/usuarios/#{id}.json",
+      type: 'DELETE',
+      data:{
+        motivo: $('#motivos').val(),
+        current_password: $('#current_password').val()
+      },
+      success: (data, status, xhr) ->
+        window.location = '/'
+      ,
+      error: (xhr, status, error) ->
+        $('#btn-eliminar-perfil').html('Eliminar')
+        $('#btn-eliminar-perfil').removeClass('disabled')
+
+        html = """    
+          <div id="error-delete" class="alert alert-error">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Atención!</strong>
+            <br>Debe corregir los siguientes errores para poder eliminar su perfil:
+            <ul>
+              <li>Debe ingresar su contraseña</li>
+              <li>Debe ingresar los motivos para eliminar su perfil (mínimo 15 caracteres)</li>
+            </ul>
+          </div>
+        """
+        $('.modal-body').append html
+
+        setTimeout ->
+          $('.modal-body').scrollTop(10000)
+        ,200
+
+        setTimeout ->
+          $('#modal-body .alert').alert('close')
+        , 3000
+    )
+
+    false
+

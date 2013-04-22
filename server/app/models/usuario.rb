@@ -17,4 +17,15 @@ class Usuario < ActiveRecord::Base
 
   validates :nombre, :presence=>true
   validates :acepta_terminos, :acceptance=>{:accept=>true}, :on => :create
+
+  def valid_password?(password)
+    return false if encrypted_password.blank?
+    bcrypt   = ::BCrypt::Password.new(encrypted_password)
+    password = ::BCrypt::Engine.hash_secret("#{password}#{self.class.pepper}", bcrypt.salt)
+    Devise.secure_compare(password, encrypted_password)
+  end
+
+  def active_for_authentication?
+    super and not disabled
+  end
 end

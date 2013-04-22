@@ -54,6 +54,8 @@ class Ability
 
       can :create, Voto
       can :destroy, Voto, :usuario_id=>usuario.id
+
+      can :destroy, Usuario, :id=>usuario.id
     end
   end
 end

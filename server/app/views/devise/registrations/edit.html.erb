@@ -1,7 +1,7 @@
 <div id="editar-perfil">
-  <h2>Edite su perfil.</h2>
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-    <div class="hero-unit">
+  <div class="hero-unit">
+    <h3>Edite su perfil.</h3>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
       <% if resource.errors.any? %>
         <div class="alert alert-error">
           <strong>Atención!</strong>
@@ -45,6 +45,7 @@
           </p>
         </fieldset>
 
+
         <fieldset class="span5 offset1">
           <p>
             Contraseña nueva: 
@@ -59,13 +60,48 @@
           </p>
         </fieldset>
       </div>
+    <% end %>
+  </div>
+  <div class="hero-unit">
+    <h3>Elimine su perfil.</h3>
+    <p>
+      <a class="btn btn-danger" data-toggle="modal" data-target="#confirm-delete" href="#"><i class="icon-trash icon-white"></i> Elimine su perfil</a>
+    </p>
+    <% content_for :modal do %>
+      <div id="confirm-delete" class="modal hide fade">
+        <div class="modal-header">
+          <h4>¿Está seguro?</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            Al eliminar su perfil usted no podrá ingresar al sistema de La República Ciudadana para participar. Adicionalmente, el contenido que usted ha publicado no estará disponible para que otras personas lo vean. 
+          </p>
+
+          <p>
+            <strong>Le sugerimos que no elimine su perfil</strong> y deje publicado su contenido porque es de gran importancia para mantener la coherencia de las discusiones y las diversas perspectivas sobre las temáticas de ciudadanía.
+          </p>
+
+          <p>
+            De igual manera, si decide lo contrario, le pedimos que por favor nos cuente los motivos de la eliminación de su contenido publicado:  
+          </p>
+
+          <form action=" ">
+            <input type="hidden" id="usuario_id" value="<%= resource.id  %>" />
+            <p>
+              Motivos para eliminar su perfil:
+              <textarea name="" id="motivos" rows="4" style="width:97%"></textarea>
+            </p>
+            <p>
+              Su contraseña:<br>
+              <input type="password" id="current_password" />
+            </p>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-dismiss="modal" class="btn btn-primary">No eliminar</a>
+          <a href="#" class="btn btn-danger" id="btn-eliminar-perfil">Eliminar</a>
+        </div>
       </div>
-    </div>
-
-  <% end %>
-
-  <% if false %>
-    <h3>Cancel my account</h3>
-    <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
-  <% end %>
+    <% end %>
+  </div>
 </div>
