@@ -45,6 +45,7 @@ class Ability
     elsif usuario.id
       can :create, Respuesta
       can :update, Respuesta, :usuario_id=>usuario.id
+      can :destroy, Respuesta, :usuario_id=>usuario.id
 
       can :create, Pregunta
       can :update, Pregunta, :usuario_id=>usuario.id

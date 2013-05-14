@@ -46,4 +46,35 @@ class RespuestasController < ApplicationController
       end
     end
   end
+  
+  # DELETE /respuestas/1.json
+  def destroy
+    pwd = params.delete(:current_password)
+    usuario = current_usuario
+
+    # pwd ok?
+    unless usuario.valid_password?(pwd)
+      head :unauthorized
+      return
+    end
+
+    # motivo present?
+    if params[:motivo].nil? or params[:motivo].size < 15
+      head :unprocessable_entity
+      return
+    end 
+
+    # mark respuesta as inactive and logout
+    @pregunta = Respuesta.find(params[:id])
+    @pregunta.disabled = true
+    @pregunta.save
+
+    # TODO:
+    # desactivar/borrar los votos y comentarios de esta respuesta
+
+    # send email to admin
+    AdminMailer.deleted_pregunta(@pregunta, params[:motivo]).deliver
+
+    head :no_content
+  end
 end

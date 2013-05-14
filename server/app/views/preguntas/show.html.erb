@@ -53,11 +53,11 @@
               <input type="hidden" id="pregunta_id" value="<%= @pregunta.id  %>" />
               <p>
                 Motivos para eliminar su pregunta:
-                <textarea name="" id="motivos" rows="4" style="width:97%"></textarea>
+                <textarea name="" id="motivos-pregunta" rows="4" style="width:97%"></textarea>
               </p>
               <p>
                 Su contraseña:<br>
-                <input type="password" id="current_password" />
+                <input type="password" id="current-password-pregunta" />
               </p>
             </form>
           </div>
@@ -113,12 +113,57 @@
         <p class="meta">Respuesta ingresada por <%= link_to respuesta.usuario.nombre, usuario_path(respuesta.usuario) %> hace <%= distance_of_time_in_words respuesta.updated_at, Time.now %>.</p>
       </div>
       <% if usuario_signed_in? and current_usuario.id == respuesta.usuario_id %>
-        <p><a class="respuesta-edit-btn btn btn-small" href="#"><i class="icon-pencil"></i> Edite su respuesta.</a></p>
+        <p>
+          <a class="respuesta-edit-btn btn btn-small" href="#"><i class="icon-pencil"></i> Edite su respuesta.</a>
+
+          <a class="btn btn-small" data-toggle="modal" data-target="#confirm-delete-respuesta" href="#"><i class="icon-trash"></i> Elimine su respuesta.</a>
+        </p>
         <div class="respuesta-edit-form hidden">
           <%= render 'preguntas/form_respuesta', :respuesta=>@editing_respuesta ? @respuesta : respuesta, :is_new=>false %>
         </div>
       <% end %>
     </div>
+
+
+
+      <!-- ==================== -->
+      <!--  ELIMINAR RESPUESTA -->
+      <!-- ==================== -->
+      <% content_for :modal do %>
+        <div id="confirm-delete-respuesta" class="modal hide fade">
+          <div class="modal-header">
+            <h4>¿Está seguro?</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              <strong>Le sugerimos que deje publicado su contenido</strong> porque es de gran importancia para mantener la coherencia de las discusiones y las diversas perspectivas sobre las temáticas de ciudadanía.
+            </p>
+
+            <p>
+              De igual manera, si decide lo contrario, le pedimos que por favor nos cuente los motivos de la eliminación de su contenido publicado:  
+            </p>
+
+            <form action=" ">
+              <input type="hidden" id="respuesta_id" value="<%= respuesta.id  %>" />
+              <p>
+                Motivos para eliminar su respuesta:
+                <textarea name="" id="motivos-respuesta" rows="4" style="width:97%"></textarea>
+              </p>
+              <p>
+                Su contraseña:<br>
+                <input type="password" id="current-password-respuesta" />
+              </p>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <a href="#" data-dismiss="modal" class="btn btn-primary">No eliminar</a>
+            <a href="#" class="btn btn-danger" id="btn-eliminar-respuesta">Eliminar</a>
+          </div>
+        </div>
+      <% end %>
+
+
+
 
     <!-- ====================== -->
     <!--  COMENTARIOS RESPUESTA  -->

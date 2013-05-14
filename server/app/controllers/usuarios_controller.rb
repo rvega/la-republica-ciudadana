@@ -110,7 +110,7 @@ class UsuariosController < ApplicationController
       return
     end
 
-    # motivo present?
+    # motivo presente?
     if params[:motivo].nil? or params[:motivo].size < 15
       head :unprocessable_entity
       return

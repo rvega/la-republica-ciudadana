@@ -161,31 +161,72 @@ $(document).ready ->
     delete_voto element.attr('data-votable-id'), element.attr('data-votable-type')
     false
 
+  # Confirmar Eliminar Respuesta
+  $('#btn-eliminar-respuesta').click (event) ->
+    id = $('#respuesta_id').val()
+    $('#btn-eliminar-respuesta').html('Eliminando...')
+    $('#btn-eliminar-respuesta').addClass('disabled')
+
+    $('.error-delete-respuesta').remove()
+    $.ajax(
+      url: "/respuestas/#{id}.json",
+      type: 'DELETE',
+      data:{
+        motivo: $('#motivos-respuesta').val(),
+        current_password: $('#current-password-respuesta').val()
+      },
+      success: (data, status, xhr) ->
+        window.location.reload()
+      ,
+      error: (xhr, status, error) ->
+        $('#btn-eliminar-respuesta').html('Eliminar')
+        $('#btn-eliminar-respuesta').removeClass('disabled')
+
+        html = """    
+          <div class="alert alert-error error-delete-respuesta">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Atención!</strong>
+            <br>Debe corregir los siguientes errores para poder eliminar su respuesta:
+            <ul>
+              <li>Debe ingresar su contraseña</li>
+              <li>Debe ingresar los motivos para eliminar su respuesta (mínimo 15 caracteres)</li>
+            </ul>
+          </div>
+        """
+        $('.modal-body').append html
+
+        setTimeout ->
+          $('.modal-body').scrollTop(10000)
+        ,200
+    )
+
+    false
+
+
+
   # Confirmar Eliminar Pregunta
   $('#btn-eliminar-pregunta').click (event) ->
-    debugger
     id = $('#pregunta_id').val()
     $('#btn-eliminar-pregunta').html('Eliminando...')
     $('#btn-eliminar-pregunta').addClass('disabled')
 
+    $('.error-delete').remove()
     $.ajax(
       url: "/preguntas/#{id}.json",
       type: 'DELETE',
       data:{
-        motivo: $('#motivos').val(),
-        current_password: $('#current_password').val()
+        motivo: $('#motivos-pregunta').val(),
+        current_password: $('#current-password-pregunta').val()
       },
       success: (data, status, xhr) ->
-        debugger
         window.location = '/'
       ,
       error: (xhr, status, error) ->
-        debugger
         $('#btn-eliminar-pregunta').html('Eliminar')
         $('#btn-eliminar-pregunta').removeClass('disabled')
 
         html = """    
-          <div id="error-delete" class="alert alert-error">
+          <div class="error-delete alert alert-error">
             <a href="#" class="close" data-dismiss="alert">&times;</a>
             <strong>Atención!</strong>
             <br>Debe corregir los siguientes errores para poder eliminar su pregunta:
@@ -211,6 +252,7 @@ $(document).ready ->
     $('#btn-eliminar-perfil').html('Eliminando...')
     $('#btn-eliminar-perfil').addClass('disabled')
 
+    $('.error-delete').remove()
     $.ajax(
       url: "/usuarios/#{id}.json",
       type: 'DELETE',
@@ -226,7 +268,7 @@ $(document).ready ->
         $('#btn-eliminar-perfil').removeClass('disabled')
 
         html = """    
-          <div id="error-delete" class="alert alert-error">
+          <div class="error-delete alert alert-error">
             <a href="#" class="close" data-dismiss="alert">&times;</a>
             <strong>Atención!</strong>
             <br>Debe corregir los siguientes errores para poder eliminar su perfil:

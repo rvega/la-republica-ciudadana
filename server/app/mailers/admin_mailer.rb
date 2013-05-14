@@ -3,6 +3,12 @@
 class AdminMailer < ActionMailer::Base
   default from: "no-reply@larepublicaciudadana.co"
 
+  def deleted_respuesta(respuesta, motivo)
+    @respuesta = respuesta
+    @motivo = motivo
+    mail(:to => 'info@larepublicaciudadana.co', :subject => 'Alguien borró una respuesta en Repciu' )
+  end
+
   def deleted_pregunta(pregunta, motivo)
     @pregunta = pregunta
     @motivo = motivo

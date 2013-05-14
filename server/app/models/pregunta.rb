@@ -9,7 +9,7 @@ class Pregunta < ActiveRecord::Base
   belongs_to :usuario
   has_and_belongs_to_many :etiquetas, :uniq=>true
   has_many :votos, :as=>:votable
-  has_many :respuestas
+  has_many :respuestas, :conditions=> ["disabled = ?", false]
   has_many :comentarios, :as=>:comentable
 
   validates :topico, :length => { :in => 3..150 }
