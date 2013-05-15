@@ -1,3 +1,5 @@
+require "bundler/capistrano"
+
 set :application, "Republica Ciudadana"
 
 set :keep_releases, 10
@@ -22,6 +24,16 @@ set :default_environment, {
   'PATH' => "#{deploy_to}/bin:$PATH",
   'GEM_HOME' => "#{deploy_to}/gems",
 }
+
+# Update gems in server
+# before "deploy:restart", "bundle:install"
+# namespace :bundle do
+# desc "run bundle install and ensure all gem requirements are met"
+# task :install do
+#   run "cd #{current_path} && gem install bundle"
+#   run "cd #{current_path} && bundle install  --without=test --without=development"
+# end
+# end
 
 # Paths in git repo
 set :subdir, "server"
