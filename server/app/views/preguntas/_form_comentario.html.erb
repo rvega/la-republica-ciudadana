@@ -27,5 +27,6 @@
   <% end %>
 
   <%= f.text_area :cuerpo, {:cols=>"", :rows=>"4"}  %>
+  <br>
   <%= f.submit raw("#{verb} su comentario"), :class=>"btn btn-primary btn-small", :disable_with=>"Enviando..." %>
 <% end %>

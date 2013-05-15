@@ -20,6 +20,7 @@
         – <i><%= link_to comentario.usuario.nombre, usuario_path(comentario.usuario) %> hace <%= distance_of_time_in_words comentario.updated_at, Time.now %></i>     
         <% if usuario_signed_in? and current_usuario.id == comentario.usuario_id %>
           <a class="btn-editar-comentario" data-form="form-comentario-<%= comentario.id %>" data-toggle="tooltip" title="Edite su comentario" href="#"><i class="icon-pencil"></i> </a>
+          <a class="btn-confirm-eliminar-comentario" data-id="<%= comentario.id %>" data-toggle="modal" data-target="#confirm-delete-comentario" href="#"><i class="icon-trash" data-toggle="tooltip" title="Borre su comentario"></i> </a>
         <% end %>
       <% end %>
     </p>

@@ -15,10 +15,10 @@ class Respuesta < ActiveRecord::Base
   #   end
   # end
 
-  has_many :comentarios, :as=>:comentable
+  has_many :comentarios, :as=>:comentable, :conditions=> ["disabled = ?", false]
   has_many :votos, :as=>:votable
   belongs_to :usuario
-  belongs_to :pregunta
+  belongs_to :pregunta, :conditions=> ["disabled = ?", false]
 
   include Mixins::HtmlCleaner
   before_validation do |respuesta|

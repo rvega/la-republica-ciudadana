@@ -10,6 +10,9 @@ $(document).ready ->
     $('.btn-editar-comentario').hide()
     $('.btn-editar-pregunta').hide()
     $('.respuesta-edit-btn').hide()
+    $('.btn-confirm-eliminar-comentario').hide()
+    $('[data-target=#confirm-delete-pregunta]').hide()
+    $('.btn-confirm-eliminar-respuesta').hide()
 
 
   # Abrir form comentario si se necesita
@@ -161,9 +164,38 @@ $(document).ready ->
     delete_voto element.attr('data-votable-id'), element.attr('data-votable-type')
     false
 
+  # Confirmar Eliminar Comentario
+  id_comentario_a_eliminar = 0
+  $('.btn-confirm-eliminar-comentario').click (event) ->
+    hideButtons()
+    btn = $(event.target)
+    btn = btn.parent('a') if btn.get(0).tagName!='A'
+    id_comentario_a_eliminar = btn.attr('data-id')
+
+  $('#btn-eliminar-comentario').click (event) ->
+    id = id_comentario_a_eliminar
+    $('#btn-eliminar-comentario').html('Eliminando...')
+    $('#btn-eliminar-comentario').addClass('disabled')
+
+    $.ajax(
+      url: "/comentarios/#{id}.json",
+      type: 'DELETE',
+      success: (data, status, xhr) ->
+        window.location.reload()
+      ,
+      error: (xhr, status, error) ->
+        window.location.reload()
+    )
+    false
+
   # Confirmar Eliminar Respuesta
+  id_respuesta_a_eliminar = 0
+  $('.btn-confirm-eliminar-respuesta').click (event) ->
+    hideButtons()
+    id_respuesta_a_eliminar = $(event.target).attr('data-id')
+
   $('#btn-eliminar-respuesta').click (event) ->
-    id = $('#respuesta_id').val()
+    id = id_respuesta_a_eliminar
     $('#btn-eliminar-respuesta').html('Eliminando...')
     $('#btn-eliminar-respuesta').addClass('disabled')
 
@@ -206,6 +238,7 @@ $(document).ready ->
 
   # Confirmar Eliminar Pregunta
   $('#btn-eliminar-pregunta').click (event) ->
+    hideButtons()
     id = $('#pregunta_id').val()
     $('#btn-eliminar-pregunta').html('Eliminando...')
     $('#btn-eliminar-pregunta').addClass('disabled')
@@ -248,6 +281,7 @@ $(document).ready ->
 
   # Confirmar Eliminar Perfil
   $('#btn-eliminar-perfil').click (event) ->
+    hideButtons()
     id = $('#usuario_id').val()
     $('#btn-eliminar-perfil').html('Eliminando...')
     $('#btn-eliminar-perfil').addClass('disabled')

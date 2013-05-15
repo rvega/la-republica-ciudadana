@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514000001) do
+ActiveRecord::Schema.define(:version => 20130515000001) do
 
   create_table "comentarios", :force => true do |t|
     t.integer  "usuario_id"
     t.integer  "comentable_id"
     t.string   "comentable_type"
     t.string   "cuerpo"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "disabled",        :default => false
   end
 
   create_table "etiquetas", :force => true do |t|

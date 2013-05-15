@@ -53,6 +53,7 @@ class Ability
       
       can :create, Comentario
       can :update, Comentario, :usuario_id=>usuario.id
+      can :destroy, Comentario, :usuario_id=>usuario.id
 
       can :create, Voto
       can :destroy, Voto, :usuario_id=>usuario.id

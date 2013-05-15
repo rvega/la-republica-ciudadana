@@ -53,7 +53,7 @@ class UsuariosController < ApplicationController
       @preguntas = @usuario.preguntas
     end
 
-    @preguntas.select! {|p| not p.extrana }
+    @preguntas.select! {|p| (not p.nil?) and (not p.extrana) }
 
     respond_to do |format|
       format.html # show.html.erb

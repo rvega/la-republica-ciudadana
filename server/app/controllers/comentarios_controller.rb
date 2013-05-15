@@ -1,7 +1,7 @@
 class ComentariosController < ApplicationController
   load_and_authorize_resource
 
-  before_filter :find_pregunta_id
+  before_filter :find_pregunta_id, :except=>:destroy
   protected
   def find_pregunta_id
     type = params[:comentario][:comentable_type]
@@ -72,6 +72,15 @@ class ComentariosController < ApplicationController
         format.json { render json: @comentario.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # DELETE /comentarios/1.json
+  def destroy
+    @comentario = Comentario.find(params[:id])
+    @comentario.disabled = true
+    @comentario.save
+
+    head :no_content
   end
 
 end

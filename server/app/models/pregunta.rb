@@ -10,7 +10,7 @@ class Pregunta < ActiveRecord::Base
   has_and_belongs_to_many :etiquetas, :uniq=>true
   has_many :votos, :as=>:votable
   has_many :respuestas, :conditions=> ["disabled = ?", false]
-  has_many :comentarios, :as=>:comentable
+  has_many :comentarios, :as=>:comentable, :conditions=> ["disabled = ?", false]
 
   validates :topico, :length => { :in => 3..150 }
   validates :cuerpo, :length => { :in => 15..30000, :message => "es demasiado corto (mínimo 15 caracteres)"}

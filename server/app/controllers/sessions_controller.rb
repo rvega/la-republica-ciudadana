@@ -9,6 +9,5 @@ class SessionsController < Devise::SessionsController
       session[:usuario_return_to] = '/'
     end
     super
-    # debugger
   end
 end

@@ -8,5 +8,5 @@ class Comentario < ActiveRecord::Base
   validates :cuerpo, :length => { :in => 15..300, :message=>"es demasiado corto (mínimo 15 caracteres)" }
 
   belongs_to :usuario
-  belongs_to :comentable, :polymorphic=>true
+  belongs_to :comentable, :polymorphic=>true, :conditions=> ["disabled = ?", false]
 end
