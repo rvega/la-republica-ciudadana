@@ -1,2 +1,2 @@
 set :branch, "master"
-set :deploy_to, "/home/rvega/webapps/repu"
+set :deploy_here, "/home/rvega/webapps/repu"

@@ -1,10 +1,10 @@
-# Bundle install in server
-require "bundler/capistrano"
-
 # Multistage
 set :stages, %w(production staging)
 set :default_stage, "staging"
 require 'capistrano/ext/multistage'
+
+# Bundle install in server
+require "bundler/capistrano"
 
 # General
 set :application, "Republica Ciudadana"
@@ -26,6 +26,7 @@ default_run_options[:pty] = true
 
 # Paths in server
 # set :deploy_to, "/home/rvega/webapps/test_repu"  # set this in config/deploy/*.rb
+set(:deploy_to){ "#{deploy_here}" }
 set :default_environment, { 
   'PATH' => "#{deploy_to}/bin:$PATH",
   'GEM_HOME' => "#{deploy_to}/gems",
@@ -62,6 +63,7 @@ namespace :deploy do
     run "#{deploy_to}/bin/restart"
   end
 end
+
 
 
 # if you want to clean up old releases on each deploy uncomment this:
