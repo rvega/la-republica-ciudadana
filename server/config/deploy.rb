@@ -1,7 +1,7 @@
 require "bundler/capistrano"
 
+# General
 set :application, "Republica Ciudadana"
-
 set :keep_releases, 10
 
 # Git stuff
@@ -25,19 +25,9 @@ set :default_environment, {
   'GEM_HOME' => "#{deploy_to}/gems",
 }
 
-# Update gems in server
-# before "deploy:restart", "bundle:install"
-# namespace :bundle do
-# desc "run bundle install and ensure all gem requirements are met"
-# task :install do
-#   run "cd #{current_path} && gem install bundle"
-#   run "cd #{current_path} && bundle install  --without=test --without=development"
-# end
-# end
-
 # Paths in git repo
 set :subdir, "server"
-before "deploy:assets:precompile", "deploy:checkout_subdir"
+before "bundle:install", "deploy:checkout_subdir"
 namespace :deploy do
   desc "Checkout subdirectory and delete all the other stuff"
   task :checkout_subdir do
