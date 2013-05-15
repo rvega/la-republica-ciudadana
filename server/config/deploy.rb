@@ -1,4 +1,10 @@
+# Bundle install in server
 require "bundler/capistrano"
+
+# Multistage
+set :stages, %w(production staging)
+set :default_stage, "staging"
+require 'capistrano/ext/multistage'
 
 # General
 set :application, "Republica Ciudadana"
@@ -6,7 +12,7 @@ set :keep_releases, 10
 
 # Git stuff
 set :scm, :git 
-set :branch, "development"
+# set :branch, "development"  # set this in config/deploy/*.rb
 set :repository,  "https://github.com/rvega/la-republica-ciudadana"
 set :scm_username, "rvega"
 
@@ -19,7 +25,7 @@ set :use_sudo, false
 default_run_options[:pty] = true
 
 # Paths in server
-set :deploy_to, "/home/rvega/webapps/test_repu"
+# set :deploy_to, "/home/rvega/webapps/test_repu"  # set this in config/deploy/*.rb
 set :default_environment, { 
   'PATH' => "#{deploy_to}/bin:$PATH",
   'GEM_HOME' => "#{deploy_to}/gems",
